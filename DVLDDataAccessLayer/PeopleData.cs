@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +41,69 @@ namespace DVLDDataAccessLayer
             return dt;
 
         }
-       
+
+        public static bool GetPersonByID(
+          int PersonID,
+          ref string nationalNo,
+          ref string firstName,
+          ref string lastName,
+          ref string secondName,
+          ref string thirdName,
+          ref DateTime dateOfBirth,
+          ref bool gender,
+          ref string address,
+          ref string phone,
+          ref string email,
+          ref string imagePath,
+          ref int countryID)
+        {
+            bool isFound = false;
+
+            string query = "SELECT * FROM People WHERE PersonID = @PersonID";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        isFound = true;
+
+                        nationalNo = reader["NationalNo"] != DBNull.Value ? (string)reader["NationalNo"] : "";
+                        firstName = reader["FirstName"] != DBNull.Value ? (string)reader["FirstName"] : "";
+                        lastName = reader["LastName"] != DBNull.Value ? (string)reader["LastName"] : "";
+                        secondName = reader["SecondName"] != DBNull.Value ? (string)reader["SecondName"] : "";
+                        thirdName = reader["ThirdName"] != DBNull.Value ? (string)reader["ThirdName"] : "";
+                        dateOfBirth = reader["DateOfBirth"] != DBNull.Value ? Convert.ToDateTime(reader["DateOfBirth"]) : DateTime.MinValue;
+
+                        // careful: DB column is spelled "Gendor"
+                        gender = reader["Gendor"] != DBNull.Value ? Convert.ToBoolean(reader["Gendor"]) : false;
+
+                        address = reader["Address"] != DBNull.Value ? (string)reader["Address"] : "";
+                        phone = reader["Phone"] != DBNull.Value ? (string)reader["Phone"] : "";
+                        email = reader["Email"] != DBNull.Value ? (string)reader["Email"] : "";
+                        imagePath = reader["ImagePath"] != DBNull.Value ? (string)reader["ImagePath"] : "";
+
+                        // careful: DB column is "NationalityCountryID"
+                        countryID = reader["NationalityCountryID"] != DBNull.Value ? Convert.ToInt32(reader["NationalityCountryID"]) : -1;
+                    }
+
+                    reader.Close();
+                }
+                catch
+                {
+                    isFound = false;
+                }
+            }
+
+            return isFound;
+        }
+
     }
 }

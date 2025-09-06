@@ -16,6 +16,7 @@ namespace DrivingLicenseManagement
         public ManagePeople()
         {
             InitializeComponent();
+            ctrlTableViewer1.RowRightClick += ctrlTableViewer1_RowRightClick;
         }
 
         private void ManagePeople_Load(object sender, EventArgs e)
@@ -31,6 +32,48 @@ namespace DrivingLicenseManagement
         private void ctrlTableViewer1_Load(object sender, EventArgs e)
         {
            
+
+        }
+        private void ctrlTableViewer1_RowRightClick(object sender, DataGridViewCellMouseEventArgs e)
+        { 
+            peopleMenu.Show(ctrlTableViewer1, e.Location);
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = ctrlTableViewer1.SelectedRow;
+            ShowPersonDetails showPersonDetails = new ShowPersonDetails(Convert.ToInt32(row.Cells["PersonID"].Value));
+            showPersonDetails.ShowDialog();
+
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("we will emplement this later", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("we will emplement this later", "Phone Call", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewPerson addNewPerson
+                = new AddNewPerson();
+            addNewPerson.ShowDialog();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdatePerson updatePerson = new UpdatePerson();
+            updatePerson.ShowDialog();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }

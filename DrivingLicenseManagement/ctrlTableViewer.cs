@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DrivingLicenseManagement
@@ -15,30 +9,45 @@ namespace DrivingLicenseManagement
         public ctrlTableViewer()
         {
             InitializeComponent();
+
+            // Hook the right-click handler
+            dataGridView1.CellMouseDown += dataGridView1_CellMouseDown;
         }
+
         public DataTable DataSource
         {
             set { ShowTable(value, dataGridView1); }
         }
 
+        public DataGridViewRow SelectedRow
+        {
+            get
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                    return dataGridView1.SelectedRows[0];
+                return null;
+            }
+        }
+
+        // Event that parent forms can subscribe to
+        public event EventHandler<DataGridViewCellMouseEventArgs> RowRightClick;
+
         // Private helper that fills the grid
         private void ShowTable(DataTable table, DataGridView grid)
         {
-            if (table == null) return;
+            grid.DataSource = table;
+        }
 
-            grid.Columns.Clear();
-            grid.Rows.Clear();
-
-            // Add columns
-            foreach (DataColumn col in table.Columns)
+        // Detect right-clicks
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
             {
-                grid.Columns.Add(col.ColumnName, col.ColumnName);
-            }
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[e.RowIndex].Selected = true;
 
-            // Add rows
-            foreach (DataRow row in table.Rows)
-            {
-                grid.Rows.Add(row.ItemArray);
+                // Notify whoever is using this control
+                RowRightClick?.Invoke(this, e);
             }
         }
     }
