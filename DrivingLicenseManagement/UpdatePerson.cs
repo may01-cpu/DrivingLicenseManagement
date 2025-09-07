@@ -12,9 +12,11 @@ namespace DrivingLicenseManagement
 {
     public partial class UpdatePerson :Form
     {
-        public UpdatePerson()
+        public UpdatePerson(int PersonID)
         {
             InitializeComponent();
+            
+            ctrlAddPerson1.PrepareForUpdate(PersonID); 
         }
 
         private void UpdatePerson_Load(object sender, EventArgs e)

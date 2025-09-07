@@ -15,6 +15,7 @@ namespace DrivingLicenseManagement
         public AddNewPerson()
         {
             InitializeComponent();
+            ctrlAddPerson1.PrepareForAdd();
         }
 
         private void AddNewPerson_Load(object sender, EventArgs e)

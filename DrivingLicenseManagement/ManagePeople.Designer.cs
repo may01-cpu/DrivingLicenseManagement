@@ -32,14 +32,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.peopleMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctrlTableViewer1 = new DrivingLicenseManagement.ctrlTableViewer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.phoneCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctrlTableViewer1 = new DrivingLicenseManagement.ctrlTableViewer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ctrlFilter1 = new DrivingLicenseManagement.ctrlFilter();
             this.peopleMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -79,26 +80,6 @@
             this.phoneCallToolStripMenuItem});
             this.peopleMenu.Name = "peopleMenu";
             this.peopleMenu.Size = new System.Drawing.Size(265, 325);
-            // 
-            // ctrlTableViewer1
-            // 
-            this.ctrlTableViewer1.AutoSize = true;
-            this.ctrlTableViewer1.Location = new System.Drawing.Point(12, 191);
-            this.ctrlTableViewer1.Name = "ctrlTableViewer1";
-            this.ctrlTableViewer1.Size = new System.Drawing.Size(1427, 387);
-            this.ctrlTableViewer1.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::DrivingLicenseManagement.Properties.Resources.People_64;
-            this.pictureBox1.Location = new System.Drawing.Point(667, 14);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 105);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
             // 
             // showDetailsToolStripMenuItem
             // 
@@ -148,11 +129,39 @@
             this.phoneCallToolStripMenuItem.Text = "Phone Call";
             this.phoneCallToolStripMenuItem.Click += new System.EventHandler(this.phoneCallToolStripMenuItem_Click);
             // 
+            // ctrlTableViewer1
+            // 
+            this.ctrlTableViewer1.AutoSize = true;
+            this.ctrlTableViewer1.Location = new System.Drawing.Point(12, 191);
+            this.ctrlTableViewer1.Name = "ctrlTableViewer1";
+            this.ctrlTableViewer1.Size = new System.Drawing.Size(1427, 387);
+            this.ctrlTableViewer1.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::DrivingLicenseManagement.Properties.Resources.People_64;
+            this.pictureBox1.Location = new System.Drawing.Point(667, 14);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 105);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ctrlFilter1
+            // 
+            this.ctrlFilter1.Location = new System.Drawing.Point(12, 155);
+            this.ctrlFilter1.Name = "ctrlFilter1";
+            this.ctrlFilter1.Size = new System.Drawing.Size(461, 52);
+            this.ctrlFilter1.TabIndex = 7;
+            // 
             // ManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1449, 675);
+            this.Controls.Add(this.ctrlFilter1);
             this.Controls.Add(this.ctrlTableViewer1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -179,5 +188,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sendEmailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem phoneCallToolStripMenuItem;
+        private ctrlFilter ctrlFilter1;
     }
 }

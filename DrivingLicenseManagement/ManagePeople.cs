@@ -64,12 +64,15 @@ namespace DrivingLicenseManagement
             AddNewPerson addNewPerson
                 = new AddNewPerson();
             addNewPerson.ShowDialog();
+            ctrlTableViewer1.DataSource = clsPeople.GetAllPeople();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdatePerson updatePerson = new UpdatePerson();
+            int PersonID = Convert.ToInt32(ctrlTableViewer1.SelectedRow.Cells["PersonID"].Value);
+            UpdatePerson updatePerson = new UpdatePerson(PersonID);
             updatePerson.ShowDialog();
+            ctrlTableViewer1.DataSource = clsPeople.GetAllPeople();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)

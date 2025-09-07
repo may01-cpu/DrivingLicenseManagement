@@ -105,5 +105,123 @@ namespace DVLDDataAccessLayer
             return isFound;
         }
 
+        public static int AddNewPerson( string nationalNo,
+          string firstName,
+          string lastName,
+          string secondName,
+          string thirdName,
+          DateTime dateOfBirth,
+          bool gender,
+          string address,
+          string phone,
+          string email,
+          string imagePath,
+          int countryID)
+        {
+            int newPersonID = -1;
+
+            string query = @"
+                INSERT INTO People 
+                (NationalNo, FirstName, LastName, SecondName, ThirdName, DateOfBirth, Gendor, Address, Phone, Email, ImagePath, NationalityCountryID) 
+                VALUES 
+                (@NationalNo, @FirstName, @LastName, @SecondName, @ThirdName, @DateOfBirth, @Gendor, @Address, @Phone, @Email, @ImagePath, @NationalityCountryID);
+                SELECT SCOPE_IDENTITY();";
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@Gendor",gender);
+            command.Parameters.AddWithValue("@Address", address);
+            command.Parameters.AddWithValue("@Phone", phone);
+            command.Parameters.AddWithValue("@Email", email);
+            command.Parameters.AddWithValue("@ImagePath", imagePath);
+            command.Parameters.AddWithValue("@NationalityCountryID", countryID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    newPersonID = insertedID;
+                }
+            }catch
+            {
+                newPersonID = -1;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return newPersonID;
+        }
+    
+        public static bool UpdatePerson(int personID,string nationalNo,
+          string firstName,
+          string lastName,
+          string secondName,
+          string thirdName,
+          DateTime dateOfBirth,
+          bool Gender, 
+          string Address,
+          string Phone,
+          string Email,
+          string ImagePath,
+          int CountryID)
+        {
+            int rowsAffected = 0;
+            string query = @"
+                UPDATE People SET 
+                    NationalNo = @NationalNo,
+                    FirstName = @FirstName,
+                    LastName = @LastName,
+                    SecondName = @SecondName,
+                    ThirdName = @ThirdName,
+                    DateOfBirth = @DateOfBirth,
+                    Gendor = @Gendor,
+                    Address = @Address,
+                    Phone = @Phone,
+                    Email = @Email,
+                    ImagePath = @ImagePath,
+                    NationalityCountryID = @NationalityCountryID
+                WHERE PersonID = @PersonID";
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", personID);
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@Gendor",Gender);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            command.Parameters.AddWithValue("@NationalityCountryID", CountryID);
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                rowsAffected = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
+
+        }
+
+
+
+
     }
 }
