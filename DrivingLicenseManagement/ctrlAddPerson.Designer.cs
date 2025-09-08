@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -48,7 +50,6 @@
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
             this.cmbCountry = new System.Windows.Forms.ComboBox();
-            this.mtxtEmail = new System.Windows.Forms.MaskedTextBox();
             this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
             this.txtNationalNo = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -77,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +95,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtEmail);
             this.panel1.Controls.Add(this.dtpBirthDate);
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.btnSave);
@@ -110,7 +114,6 @@
             this.panel1.Controls.Add(this.rbtnFemale);
             this.panel1.Controls.Add(this.rbtnMale);
             this.panel1.Controls.Add(this.cmbCountry);
-            this.panel1.Controls.Add(this.mtxtEmail);
             this.panel1.Controls.Add(this.mtxtPhone);
             this.panel1.Controls.Add(this.txtNationalNo);
             this.panel1.Controls.Add(this.label12);
@@ -133,6 +136,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(960, 467);
             this.panel1.TabIndex = 2;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.BackColor = System.Drawing.SystemColors.Control;
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtEmail.Location = new System.Drawing.Point(202, 247);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(159, 30);
+            this.txtEmail.TabIndex = 38;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // dtpBirthDate
             // 
@@ -330,16 +344,6 @@
             this.cmbCountry.Size = new System.Drawing.Size(159, 28);
             this.cmbCountry.TabIndex = 20;
             // 
-            // mtxtEmail
-            // 
-            this.mtxtEmail.BackColor = System.Drawing.SystemColors.Control;
-            this.mtxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mtxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.mtxtEmail.Location = new System.Drawing.Point(202, 246);
-            this.mtxtEmail.Name = "mtxtEmail";
-            this.mtxtEmail.Size = new System.Drawing.Size(159, 30);
-            this.mtxtEmail.TabIndex = 18;
-            // 
             // mtxtPhone
             // 
             this.mtxtPhone.BackColor = System.Drawing.SystemColors.Control;
@@ -511,6 +515,10 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Birth Date:";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ctrlAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -518,6 +526,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ctrlAddPerson";
             this.Size = new System.Drawing.Size(995, 499);
+            this.Load += new System.EventHandler(this.ctrlAddPerson_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
@@ -530,6 +539,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -554,7 +564,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNationalNo;
-        private System.Windows.Forms.MaskedTextBox mtxtEmail;
         private System.Windows.Forms.MaskedTextBox mtxtPhone;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtAddress;
@@ -574,5 +583,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DateTimePicker dtpBirthDate;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtEmail;
     }
 }

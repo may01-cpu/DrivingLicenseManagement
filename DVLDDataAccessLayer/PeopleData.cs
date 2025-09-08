@@ -105,6 +105,7 @@ namespace DVLDDataAccessLayer
             return isFound;
         }
 
+
         public static int AddNewPerson( string nationalNo,
           string firstName,
           string lastName,
@@ -160,17 +161,11 @@ namespace DVLDDataAccessLayer
         }
     
         public static bool UpdatePerson(int personID,string nationalNo,
-          string firstName,
-          string lastName,
-          string secondName,
-          string thirdName,
-          DateTime dateOfBirth,
-          bool Gender, 
-          string Address,
-          string Phone,
-          string Email,
-          string ImagePath,
-          int CountryID)
+          string firstName,string lastName,
+          string secondName, string thirdName,
+          DateTime dateOfBirth,bool Gender, 
+          string Address, string Phone, string Email,
+          string ImagePath,int CountryID)
         {
             int rowsAffected = 0;
             string query = @"
@@ -220,7 +215,28 @@ namespace DVLDDataAccessLayer
 
         }
 
-
+        public static bool DeletePerson(int PersonID)
+        {
+            int rowsAffected = 0;
+            string query = "DELETE FROM People WHERE PersonID = @PersonID";
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                rowsAffected = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
+        }
 
 
     }

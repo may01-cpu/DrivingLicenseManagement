@@ -98,15 +98,15 @@ namespace DVLDBusinessLayer
 
         private bool _AddNewPerson()
         {
-            this.PersonID=clsPeopleDataAccess.AddNewPerson(NationalNo, FirstName, LastName, SecondName, ThirdName, DateOfBirth ,Gender, Address, Phone, Email, ImagePath, CountryID);
+            this.PersonID = clsPeopleDataAccess.AddNewPerson(NationalNo, FirstName, LastName, SecondName, ThirdName, DateOfBirth, Gender, Address, Phone, Email, ImagePath, CountryID);
             return (this.PersonID != -1);
         }
-        
+
         private bool _UpdatePerson()
         {
-            return clsPeopleDataAccess.UpdatePerson(PersonID,NationalNo, FirstName, LastName, SecondName, ThirdName, DateOfBirth, Gender, Address, Phone, Email, ImagePath, CountryID);
+            return clsPeopleDataAccess.UpdatePerson(PersonID, NationalNo, FirstName, LastName, SecondName, ThirdName, DateOfBirth, Gender, Address, Phone, Email, ImagePath, CountryID);
         }
-         public bool Save()
+        public bool Save()
         {
             switch (OperationType)
             {
@@ -135,5 +135,10 @@ namespace DVLDBusinessLayer
             return false;
         }
 
+        public static bool DeletePerson(int personID)
+        {
+            return clsPeopleDataAccess.DeletePerson(personID);
+
+        }
     }
     }

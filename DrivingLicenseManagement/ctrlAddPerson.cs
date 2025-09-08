@@ -57,7 +57,7 @@ namespace DrivingLicenseManagement
             txtLastName.Text = person.LastName;
             dtpBirthDate.Value = person.DateOfBirth;
             mtxtPhone.Text = person.Phone;
-            mtxtEmail.Text = person.Email;
+            txtEmail.Text = person.Email;
             txtAddress.Text = person.Address;
 
             rbtnFemale.Checked = person.Gender;
@@ -75,7 +75,7 @@ namespace DrivingLicenseManagement
             txtLastName.Clear();
             dtpBirthDate.Value = DateTime.Now;
             mtxtPhone.Clear();
-            mtxtEmail.Clear();
+            txtEmail.Clear();
             txtAddress.Clear();
 
             rbtnMale.Checked = true;
@@ -95,7 +95,7 @@ namespace DrivingLicenseManagement
             CurrentPerson.LastName = txtLastName.Text;
             CurrentPerson.DateOfBirth = dtpBirthDate.Value;
             CurrentPerson.Phone = mtxtPhone.Text;
-            CurrentPerson.Email = mtxtEmail.Text;
+            CurrentPerson.Email = txtEmail.Text;
             CurrentPerson.Address = txtAddress.Text;
             CurrentPerson.Gender = rbtnFemale.Checked;
             if (cmbCountry.SelectedIndex != -1)
@@ -118,5 +118,38 @@ namespace DrivingLicenseManagement
         {
             Parent.FindForm()?.Close();
         }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                errorProvider1.SetError(txtEmail, "Please enter a valid email address");
+                e.Cancel = true; // ⛔ prevents leaving the field
+            }
+            else
+            {
+                errorProvider1.SetError(txtEmail, "");
+                e.Cancel = false;
+            }
+        }
+
+
+        private void ctrlAddPerson_Load(object sender, EventArgs e)
+        {
+            dtpBirthDate.MaxDate = DateTime.Now.AddYears(-18);
+        }
+
+       
     }
 }

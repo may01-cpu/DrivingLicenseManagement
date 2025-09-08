@@ -77,7 +77,21 @@ namespace DrivingLicenseManagement
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int PersonID = Convert.ToInt32(ctrlTableViewer1.SelectedRow.Cells["PersonID"].Value);
+            if (MessageBox.Show("Are you sure you want to delete this person?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (clsPeople.DeletePerson(PersonID))
+                {
+                    MessageBox.Show("Person deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ctrlTableViewer1.DataSource = clsPeople.GetAllPeople();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+   
+    
     }
 }
