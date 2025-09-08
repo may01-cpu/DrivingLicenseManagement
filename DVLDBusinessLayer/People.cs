@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static DVLDBusinessLayer.clsCountry;
-
+using System.IO;
 namespace DVLDBusinessLayer
 {
     public class clsPeople
@@ -137,8 +137,14 @@ namespace DVLDBusinessLayer
 
         public static bool DeletePerson(int personID)
         {
+            
             return clsPeopleDataAccess.DeletePerson(personID);
 
         }
+
+        public static bool IsNationalNoExists(string nationalNo)
+        {
+            return clsPeopleDataAccess.IsPersonExist(nationalNo);
+        }
     }
-    }
+}

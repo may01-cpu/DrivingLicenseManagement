@@ -77,11 +77,42 @@ namespace DrivingLicenseManagement
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int PersonID = Convert.ToInt32(ctrlTableViewer1.SelectedRow.Cells["PersonID"].Value);
-            if (MessageBox.Show("Are you sure you want to delete this person?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (ctrlTableViewer1.SelectedRow == null)
             {
+                MessageBox.Show("Please select a person first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int PersonID = Convert.ToInt32(ctrlTableViewer1.SelectedRow.Cells["PersonID"].Value);
+
+            if (MessageBox.Show("Are you sure you want to delete this person?",
+                                "Delete Person",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                clsPeople Person = clsPeople.FindPersonByID(PersonID);
+
+                if (Person == null)
+                {
+                    MessageBox.Show("Person not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string ImagePath = Person.ImagePath;
+
                 if (clsPeople.DeletePerson(PersonID))
                 {
+                    // try deleting photo, ignore errors
+                    try
+                    {
+                        PhotoManager.DeletePersonPhoto(ImagePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Person deleted, but photo could not be deleted:\n" + ex.Message,
+                                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
                     MessageBox.Show("Person deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ctrlTableViewer1.DataSource = clsPeople.GetAllPeople();
                 }

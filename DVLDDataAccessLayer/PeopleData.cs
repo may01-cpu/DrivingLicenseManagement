@@ -61,8 +61,8 @@ namespace DVLDDataAccessLayer
 
             string query = "SELECT * FROM People WHERE PersonID = @PersonID";
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
             {
                 command.Parameters.AddWithValue("@PersonID", PersonID);
 
@@ -81,16 +81,11 @@ namespace DVLDDataAccessLayer
                         secondName = reader["SecondName"] != DBNull.Value ? (string)reader["SecondName"] : "";
                         thirdName = reader["ThirdName"] != DBNull.Value ? (string)reader["ThirdName"] : "";
                         dateOfBirth = reader["DateOfBirth"] != DBNull.Value ? Convert.ToDateTime(reader["DateOfBirth"]) : DateTime.MinValue;
-
-                        // careful: DB column is spelled "Gendor"
                         gender = reader["Gendor"] != DBNull.Value ? Convert.ToBoolean(reader["Gendor"]) : false;
-
                         address = reader["Address"] != DBNull.Value ? (string)reader["Address"] : "";
                         phone = reader["Phone"] != DBNull.Value ? (string)reader["Phone"] : "";
                         email = reader["Email"] != DBNull.Value ? (string)reader["Email"] : "";
-                        imagePath = reader["ImagePath"] != DBNull.Value ? (string)reader["ImagePath"] : "";
-
-                        // careful: DB column is "NationalityCountryID"
+                        imagePath = reader["ImagePath"] != DBNull.Value ? (string)reader["ImagePath"] : "";  
                         countryID = reader["NationalityCountryID"] != DBNull.Value ? Convert.ToInt32(reader["NationalityCountryID"]) : -1;
                     }
 
@@ -100,9 +95,13 @@ namespace DVLDDataAccessLayer
                 {
                     isFound = false;
                 }
-            }
+                finally
+                {
+                    connection.Close();
+                }
 
-            return isFound;
+                return isFound;
+            }
         }
 
 
@@ -226,6 +225,7 @@ namespace DVLDDataAccessLayer
             {
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
+     
             }
             catch
             {
@@ -238,6 +238,73 @@ namespace DVLDDataAccessLayer
             return (rowsAffected > 0);
         }
 
+        public static bool IsPersonExist(string NationalNo)
+        {
+            bool isFound = false;
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM People WHERE NationalNo=@NationalNo";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool IsPersonExist(int PersonID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM People WHERE PersonID=@PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+    
+       
+    
     }
 }

@@ -45,7 +45,7 @@ namespace DrivingLicenseManagement
                 lblName.Text = "      " + Person.FirstName + " " + Person.SecondName 
                                 + " " + Person.ThirdName + " " + Person.LastName;
 
-
+                pictureBox1.Image=Image.FromFile(Person.ImagePath);
 
             }
         }

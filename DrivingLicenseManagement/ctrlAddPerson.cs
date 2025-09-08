@@ -1,5 +1,6 @@
 ﻿using DVLDBusinessLayer;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DrivingLicenseManagement
@@ -88,6 +89,15 @@ namespace DrivingLicenseManagement
                 CurrentPerson = new clsPeople();
 
             // Fill data from UI
+            if (string.IsNullOrWhiteSpace(txtNationalNo.Text) ||
+                string.IsNullOrWhiteSpace(txtFirstName.Text) ||
+                string.IsNullOrWhiteSpace(txtLastName.Text) ||
+                cmbCountry.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please fill in all required fields.");
+                return;
+            }
+          
             CurrentPerson.NationalNo = txtNationalNo.Text;
             CurrentPerson.FirstName = txtFirstName.Text;
             CurrentPerson.SecondName = txtSecondName.Text;
@@ -100,6 +110,15 @@ namespace DrivingLicenseManagement
             CurrentPerson.Gender = rbtnFemale.Checked;
             if (cmbCountry.SelectedIndex != -1)
                 CurrentPerson.CountryID = (int)cmbCountry.SelectedValue;
+
+            if(!string.IsNullOrEmpty(selectedPhotoPath))
+            {
+              string newPath=PhotoManager.SaveOrUpdatePersonPhoto(selectedPhotoPath, CurrentPerson.ImagePath);
+               CurrentPerson.ImagePath = newPath;
+                pictureBox1.Image = Image.FromFile(newPath);
+
+
+            }
 
             if (CurrentPerson.Save())
             {
@@ -135,7 +154,7 @@ namespace DrivingLicenseManagement
             if (!IsValidEmail(txtEmail.Text))
             {
                 errorProvider1.SetError(txtEmail, "Please enter a valid email address");
-                e.Cancel = true; // ⛔ prevents leaving the field
+                e.Cancel = true; 
             }
             else
             {
@@ -144,12 +163,51 @@ namespace DrivingLicenseManagement
             }
         }
 
-
         private void ctrlAddPerson_Load(object sender, EventArgs e)
         {
             dtpBirthDate.MaxDate = DateTime.Now.AddYears(-18);
         }
 
-       
+        private string selectedPhotoPath = "";
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+                dlg.Title = "Select a Photo";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    selectedPhotoPath = dlg.FileName;
+
+                    // Show preview in PictureBox
+                    pictureBox1.Image = Image.FromFile(selectedPhotoPath);
+                }
+            }
+        }
+
+        private void txtNationalNo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNationalNo.Text))
+            {
+                errorProvider1.SetError(txtNationalNo, "National No is required.");
+                e.Cancel = true;
+
+            }
+            else
+            {
+
+                if (clsPeople.IsNationalNoExists(txtNationalNo.Text))
+                {
+                    errorProvider1.SetError(txtNationalNo, "National No already exists.");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProvider1.SetError(txtNationalNo, "");
+                    e.Cancel = false;
+                }
+            }
+        }
     }
 }
