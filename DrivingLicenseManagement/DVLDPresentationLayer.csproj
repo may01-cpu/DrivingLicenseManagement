@@ -47,10 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddNewPerson.cs">
+    <Compile Include="frmLoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewPerson.Designer.cs">
+    <Compile Include="frmLoginScreen.Designer.cs">
+      <DependentUpon>frmLoginScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\AddNewPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\AddNewPerson.Designer.cs">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlAddPerson.cs">
@@ -58,12 +64,6 @@
     </Compile>
     <Compile Include="ctrlAddPerson.Designer.cs">
       <DependentUpon>ctrlAddPerson.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ctrlFilter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctrlFilter.Designer.cs">
-      <DependentUpon>ctrlFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
@@ -77,10 +77,10 @@
     <Compile Include="ctrlTableViewer.Designer.cs">
       <DependentUpon>ctrlTableViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagePeople.cs">
+    <Compile Include="People\ManagePeople.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagePeople.Designer.cs">
+    <Compile Include="People\ManagePeople.Designer.cs">
       <DependentUpon>ManagePeople.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -91,26 +91,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowPersonDetails.cs">
+    <Compile Include="People\ShowPersonDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowPersonDetails.Designer.cs">
+    <Compile Include="People\ShowPersonDetails.Designer.cs">
       <DependentUpon>ShowPersonDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdatePerson.cs">
+    <Compile Include="People\UpdatePerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdatePerson.Designer.cs">
+    <Compile Include="People\UpdatePerson.Designer.cs">
       <DependentUpon>UpdatePerson.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddNewPerson.resx">
+    <EmbeddedResource Include="frmLoginScreen.resx">
+      <DependentUpon>frmLoginScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\AddNewPerson.resx">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlAddPerson.resx">
       <DependentUpon>ctrlAddPerson.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctrlFilter.resx">
-      <DependentUpon>ctrlFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
@@ -121,7 +121,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagePeople.resx">
+    <EmbeddedResource Include="People\ManagePeople.resx">
       <DependentUpon>ManagePeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -134,10 +134,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ShowPersonDetails.resx">
+    <EmbeddedResource Include="People\ShowPersonDetails.resx">
       <DependentUpon>ShowPersonDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdatePerson.resx">
+    <EmbeddedResource Include="People\UpdatePerson.resx">
       <DependentUpon>UpdatePerson.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -236,6 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Close 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person-taking-driver-s-license-exam.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
