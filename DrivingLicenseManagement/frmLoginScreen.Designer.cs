@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.cbRemember = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.cbRemember = new System.Windows.Forms.CheckBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -59,44 +59,39 @@
             this.panel1.Size = new System.Drawing.Size(546, 483);
             this.panel1.TabIndex = 1;
             // 
-            // pictureBox1
+            // btnClose
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::DrivingLicenseManagement.Properties.Resources.person_taking_driver_s_license_exam;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 483);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.btnClose.ForeColor = System.Drawing.Color.Sienna;
+            this.btnClose.Location = new System.Drawing.Point(484, 12);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(37, 34);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label1
+            // btnLogin
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(111, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(346, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Login to your account";
+            this.btnLogin.ForeColor = System.Drawing.Color.Sienna;
+            this.btnLogin.Location = new System.Drawing.Point(234, 382);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(119, 52);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // txtUsername
+            // cbRemember
             // 
-            this.txtUsername.Location = new System.Drawing.Point(250, 181);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(237, 35);
-            this.txtUsername.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(77, 181);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 29);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Username:";
+            this.cbRemember.AutoSize = true;
+            this.cbRemember.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRemember.Location = new System.Drawing.Point(322, 311);
+            this.cbRemember.Name = "cbRemember";
+            this.cbRemember.Size = new System.Drawing.Size(165, 29);
+            this.cbRemember.TabIndex = 5;
+            this.cbRemember.Text = "Remember me";
+            this.cbRemember.UseVisualStyleBackColor = true;
+            this.cbRemember.CheckedChanged += new System.EventHandler(this.cbRemember_CheckedChanged);
             // 
             // label3
             // 
@@ -116,38 +111,44 @@
             this.txtPassword.Size = new System.Drawing.Size(237, 35);
             this.txtPassword.TabIndex = 3;
             // 
-            // cbRemember
+            // label2
             // 
-            this.cbRemember.AutoSize = true;
-            this.cbRemember.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRemember.Location = new System.Drawing.Point(322, 311);
-            this.cbRemember.Name = "cbRemember";
-            this.cbRemember.Size = new System.Drawing.Size(165, 29);
-            this.cbRemember.TabIndex = 5;
-            this.cbRemember.Text = "Remember me";
-            this.cbRemember.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(77, 181);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(139, 29);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Username:";
             // 
-            // btnLogin
+            // txtUsername
             // 
-            this.btnLogin.ForeColor = System.Drawing.Color.Sienna;
-            this.btnLogin.Location = new System.Drawing.Point(234, 382);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(119, 52);
-            this.btnLogin.TabIndex = 6;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.txtUsername.Location = new System.Drawing.Point(250, 181);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(237, 35);
+            this.txtUsername.TabIndex = 1;
             // 
-            // btnClose
+            // label1
             // 
-            this.btnClose.ForeColor = System.Drawing.Color.Sienna;
-            this.btnClose.Location = new System.Drawing.Point(484, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(37, 34);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "X";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkRed;
+            this.label1.Location = new System.Drawing.Point(111, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(346, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Login to your account";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::DrivingLicenseManagement.Properties.Resources.person_taking_driver_s_license_exam;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(324, 483);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // frmLoginScreen
             // 

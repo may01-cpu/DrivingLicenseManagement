@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace DVLDBusinessLayer
 {
     public class clsUser : clsPeople
@@ -14,6 +14,15 @@ namespace DVLDBusinessLayer
         public string Password { get; set; }
         public bool IsActive { get; set; }
 
+        public static string UserPath = @"Remember-User.txt";
+        public static void RememberUser(string username, string password)
+        {
+
+            string userData = $"{username}:{password}";
+            File.WriteAllText(UserPath, userData + Environment.NewLine);
+    
+                
+         }
         private clsUser(int userID, int personID, string username, string password, bool isActive)
         {
             UserID = userID;
@@ -38,5 +47,8 @@ namespace DVLDBusinessLayer
             }
 
         }
+  
+    
+    
     }
 }
