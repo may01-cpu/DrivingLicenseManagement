@@ -35,6 +35,7 @@ namespace DrivingLicenseManagement
         // Private helper that fills the grid
         private void ShowTable(DataTable table, DataGridView grid)
         {
+          
             grid.DataSource = table;
         }
 

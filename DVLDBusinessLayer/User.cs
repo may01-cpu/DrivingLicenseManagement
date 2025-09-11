@@ -49,9 +49,15 @@ namespace DVLDBusinessLayer
 
         }
   
+        
         public static DataTable ListAllUsers()
         {
-            return clsUsersData.GetAllUsers();
+            DataTable dt = clsUsersData.GetAllUsers();
+            dt.Columns.Add("FullName", typeof(string));
+            foreach (DataRow row in dt.Rows) {
+                row["FullName"] = row["FirstName"].ToString()+" " + row["SecondName"].ToString() + " " + row["ThirdName"].ToString() + " " + row["LastName"].ToString() + " ";
+            }
+            return dt ;
         }
 
         private bool _AddNewUser()

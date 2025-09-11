@@ -50,7 +50,20 @@ namespace DVLDDataAccessLayer
 
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM Users";
+            string query = @"SELECT 
+                               Users.UserID,
+                               Users.UserName,
+                               Users.Password,
+                               Users.IsActive,
+                               Users.PersonID,
+                               People.FirstName,
+                               People.SecondName,
+                               People.ThirdName,
+                               People.LastName
+                             FROM Users
+                             INNER JOIN People 
+                             ON People.PersonID = Users.PersonID;
+                           ";
             SqlCommand command = new SqlCommand(query, connection);
             try
             {

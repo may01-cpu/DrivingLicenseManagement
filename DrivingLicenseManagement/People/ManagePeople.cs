@@ -25,7 +25,7 @@ namespace DrivingLicenseManagement
 
         private DataTable _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo",
                                                      "FirstName", "SecondName", "ThirdName", "LastName",
-                                                     "Gendor", "DateOfBirth", "NationalityCountryID",
+                                                     "GendorCaption", "DateOfBirth", "NationalityCountryID",
                                                      "Phone", "Email");
 
         private void refreshPeopleList()
@@ -33,7 +33,7 @@ namespace DrivingLicenseManagement
             _dtAllPeople = clsPeople.GetAllPeople();
             _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo",
                                                      "FirstName", "SecondName", "ThirdName", "LastName",
-                                                     "Gendor", "DateOfBirth", "NationalityCountryID",
+                                                     "GendorCaption", "DateOfBirth", "NationalityCountryID",
                                                      "Phone", "Email");
             ctrlTableViewer1.DataSource = _dtPeople;
         }

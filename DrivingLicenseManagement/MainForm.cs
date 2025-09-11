@@ -40,5 +40,11 @@ namespace DrivingLicenseManagement
             this.Close();
            
         }
+
+        private void usersToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ManageUsers Users=new ManageUsers();
+            Users.ShowDialog();
+        }
     }
 }

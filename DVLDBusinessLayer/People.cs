@@ -28,6 +28,8 @@ namespace DVLDBusinessLayer
 
         public int CountryID { get; set; }
 
+        public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
+                
         enum eOpType { AddNewPerson, updatePerson }
         private eOpType OperationType;
         public clsPeople()
@@ -68,9 +70,11 @@ namespace DVLDBusinessLayer
 
         public static DataTable GetAllPeople()
         {
-            return clsPeopleDataAccess.GetAllPeople();
-        }
 
+            return clsPeopleDataAccess.GetAllPeople();
+
+        }
+      
         public static clsPeople FindPersonByID(int PersonID)
         {
             bool gender = false;
