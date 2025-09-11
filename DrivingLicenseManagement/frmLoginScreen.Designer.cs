@@ -54,9 +54,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(323, 0);
+            this.panel1.Location = new System.Drawing.Point(322, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(546, 483);
+            this.panel1.Size = new System.Drawing.Size(547, 483);
             this.panel1.TabIndex = 1;
             // 
             // btnClose
@@ -91,7 +91,6 @@
             this.cbRemember.TabIndex = 5;
             this.cbRemember.Text = "Remember me";
             this.cbRemember.UseVisualStyleBackColor = true;
-            this.cbRemember.CheckedChanged += new System.EventHandler(this.cbRemember_CheckedChanged);
             // 
             // label3
             // 
@@ -160,7 +159,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLoginScreen";
             this.Text = "frmLoginScreen";
-            this.Load += new System.EventHandler(this.frmLoginScreen_Load);
+            this.Shown += new System.EventHandler(this.frmLoginScreen_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

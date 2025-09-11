@@ -25,67 +25,84 @@ namespace DrivingLicenseManagement
         {
             username = txtUsername.Text;
             password = txtPassword.Text;
-            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter both username and password.", "Input Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else
+
+            clsUser user = clsUser.AuthenticateUser(username, password);
+
+            if (user != null)
             {
-                clsUser user = clsUser.AuthenticateUser(username, password);
-                if (user != null)
+                if (user.IsActive)
                 {
-                    if (user.IsActive)
+                    // Save credentials if Remember Me is checked
+                    if (cbRemember.Checked)
                     {
-                        MainForm mainForm= new MainForm();
-                        mainForm.ShowDialog();
+                        Properties.Settings.Default.UserName = username;
+                        Properties.Settings.Default.Password = password;
                     }
                     else
                     {
-                        MessageBox.Show("you're not an active user please contact your admin", "Not Active", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
 
+                        Properties.Settings.Default.UserName = "";
+                        Properties.Settings.Default.Password = "";
+
+                    }
+                    Properties.Settings.Default.Save();
+                    
+                    MainForm mainForm = new MainForm();
+                    this.Hide();
+                    mainForm.ShowDialog();
+                    this.Show();
+                    if (string.IsNullOrEmpty(Properties.Settings.Default.UserName) ||
+                    string.IsNullOrEmpty(Properties.Settings.Default.Password))
+                    {
+                        txtUsername.Clear();
+                        txtPassword.Clear();
+                        cbRemember.Checked = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("wrong password or username","", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                }
-                if (cbRemember.Checked) {
-                  clsUser.RememberUser(username,password);
+                    MessageBox.Show("You're not an active user. Please contact your admin.",
+                                    "Not Active", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        }
-
-        private void frmLoginScreen_Load(object sender, EventArgs e)
-        {
-            if (File.Exists(clsUser.UserPath))
+            else
             {
-                string firstLine = File.ReadLines(clsUser.UserPath).FirstOrDefault();
-
-                if (!string.IsNullOrWhiteSpace(firstLine))
-                {
-                    string[] parts = firstLine.Split(':');
-
-                    if (parts.Length >= 2) 
-                    {
-                        txtUsername.Text = parts[0];
-                        txtPassword.Text = parts[1];
-
-                    }
-                }
+                MessageBox.Show("Wrong username or password.", "Login Failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+      
+        private void frmLoginScreen_Shown(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UserName != "" &&
+                Properties.Settings.Default.Password != "")
+            {
+                txtUsername.Text = Properties.Settings.Default.UserName;
+                txtPassword.Text = Properties.Settings.Default.Password;
+                cbRemember.Checked = true;
+            }
+            else
+            {
+                
+                txtUsername.Clear();
+                txtPassword.Clear();
+                cbRemember.Checked = false;
+            }
+        }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void cbRemember_CheckedChanged(object sender, EventArgs e)
-        {
-           
-            }
         }
     }
 

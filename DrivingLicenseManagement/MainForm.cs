@@ -38,6 +38,7 @@ namespace DrivingLicenseManagement
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+           
         }
     }
 }

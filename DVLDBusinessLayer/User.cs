@@ -1,36 +1,37 @@
 ﻿using DVLDDataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 namespace DVLDBusinessLayer
 {
-    public class clsUser : clsPeople
+    public class clsUser 
     {
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        
+        public clsPeople Person { get; set; }
 
-        public static string UserPath = @"Remember-User.txt";
-        public static void RememberUser(string username, string password)
-        {
-
-            string userData = $"{username}:{password}";
-            File.WriteAllText(UserPath, userData + Environment.NewLine);
-    
-                
-         }
+        enum eOpType { AddUser,UpdateUser}
+        private eOpType _OperationType;
         private clsUser(int userID, int personID, string username, string password, bool isActive)
         {
             UserID = userID;
             Password = password;
             Username = username;
             IsActive = isActive;
-            PersonID = personID;
+            Person = clsPeople.FindPersonByID(personID);
+            
         }
+        
+        
         public static clsUser AuthenticateUser(string username, string password)
         {
             int userID = -1;
@@ -48,7 +49,60 @@ namespace DVLDBusinessLayer
 
         }
   
-    
-    
+        public static DataTable ListAllUsers()
+        {
+            return clsUsersData.GetAllUsers();
+        }
+
+        private bool _AddNewUser()
+        {
+            this.UserID = clsUsersData.AddNewUser(Username, Password,IsActive,Person.PersonID);
+            return (this.UserID != -1);
+        }
+
+        private bool _UpdateUser()
+        {
+            return clsUsersData.UpdateUser(UserID,Username, Password,IsActive,Person.PersonID);
+        }
+        public bool Save()
+        {
+            switch (_OperationType)
+            {
+                case eOpType.AddUser:
+                    if (_AddNewUser())
+                    {
+
+                        _OperationType = eOpType.UpdateUser;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case eOpType.UpdateUser:
+
+
+                    return _UpdateUser();
+
+            }
+
+
+
+
+            return false;
+        }
+
+        public static bool DeleteUser(int UserID)
+        {
+
+            return clsUsersData.DeleteUser(UserID);
+
+        }
+
+        public static bool IsUserExists(int UserID)
+        {
+            return clsUsersData.IsUserExist(UserID);
+        }
     }
 }
