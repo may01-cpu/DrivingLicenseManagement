@@ -55,7 +55,7 @@ namespace DrivingLicenseManagement
 
         private void _ShowUserDetails()
         {
-            ShowUserInfo showUserInfo = new ShowUserInfo();
+            frmShowUserInfo showUserInfo = new frmShowUserInfo();
             showUserInfo.ShowDialog();
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -70,7 +70,9 @@ namespace DrivingLicenseManagement
         //
         private void _AddNewUser()
         {
-            //add user code;
+            frmAddNewUser addNewUser = new frmAddNewUser();
+            addNewUser.ShowDialog();
+
             _RefreshUsersList();
         }
         private void pictureBox2_Click(object sender, EventArgs e)

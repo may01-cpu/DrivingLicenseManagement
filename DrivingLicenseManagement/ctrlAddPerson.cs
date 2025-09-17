@@ -1,4 +1,5 @@
-﻿using DVLDBusinessLayer;
+﻿using DrivingLicenseManagement.Properties;
+using DVLDBusinessLayer;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -60,11 +61,12 @@ namespace DrivingLicenseManagement
             mtxtPhone.Text = person.Phone;
             txtEmail.Text = person.Email;
             txtAddress.Text = person.Address;
-
             rbtnFemale.Checked = person.Gender;
             rbtnMale.Checked = !person.Gender;
-
             cmbCountry.SelectedValue = person.CountryID;
+            pbPersonImage.ImageLocation = person.ImagePath;
+            lkblRemove.Visible = (person.ImagePath != null);
+            
         }
 
         private void ClearForm()
@@ -80,6 +82,7 @@ namespace DrivingLicenseManagement
             txtAddress.Clear();
 
             rbtnMale.Checked = true;
+            pbPersonImage.Image = Resources.Male_512;
             cmbCountry.SelectedIndex = -1;
         }
 
@@ -108,6 +111,7 @@ namespace DrivingLicenseManagement
             CurrentPerson.Email = txtEmail.Text;
             CurrentPerson.Address = txtAddress.Text;
             CurrentPerson.Gender = rbtnFemale.Checked;
+           
             if (cmbCountry.SelectedIndex != -1)
                 CurrentPerson.CountryID = (int)cmbCountry.SelectedValue;
 
@@ -115,7 +119,7 @@ namespace DrivingLicenseManagement
             {
               string newPath=PhotoManager.SaveOrUpdatePersonPhoto(selectedPhotoPath, CurrentPerson.ImagePath);
                CurrentPerson.ImagePath = newPath;
-                pictureBox1.Image = Image.FromFile(newPath);
+                pbPersonImage.Image = Image.FromFile(newPath);
 
 
             }
@@ -166,6 +170,8 @@ namespace DrivingLicenseManagement
         private void ctrlAddPerson_Load(object sender, EventArgs e)
         {
             dtpBirthDate.MaxDate = DateTime.Now.AddYears(-18);
+            dtpBirthDate.MinDate = DateTime.Now.AddYears(-100);
+
         }
 
         private string selectedPhotoPath = "";
@@ -181,7 +187,7 @@ namespace DrivingLicenseManagement
                     selectedPhotoPath = dlg.FileName;
 
                     // Show preview in PictureBox
-                    pictureBox1.Image = Image.FromFile(selectedPhotoPath);
+                    pbPersonImage.Image = Image.FromFile(selectedPhotoPath);
                 }
             }
         }
@@ -208,6 +214,23 @@ namespace DrivingLicenseManagement
                     e.Cancel = false;
                 }
             }
+        }
+
+        private void lkblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            PhotoManager.DeletePersonPhoto(CurrentPerson.ImagePath);
+            _SetDefaultPhoto();
+        }
+
+        private void _SetDefaultPhoto()
+        {
+            pbPersonImage.Image = rbtnMale.Checked ? Resources.Male_512 : Resources.Female_512;
+
+        }
+        private void rbtnMale_CheckedChanged(object sender, EventArgs e)
+        {
+            _SetDefaultPhoto();
         }
     }
 }

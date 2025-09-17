@@ -47,16 +47,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctrlUserFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlUserFilter.Designer.cs">
+      <DependentUpon>ctrlUserFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlUserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlUserInfo.Designer.cs">
+      <DependentUpon>ctrlUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmAddNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmAddNewUser.Designer.cs">
+      <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLoginScreen.Designer.cs">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageUsers.cs">
+    <Compile Include="Users\frmUpdateUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageUsers.Designer.cs">
+    <Compile Include="Users\frmUpdateUser.Designer.cs">
+      <DependentUpon>frmUpdateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ManageUsers.Designer.cs">
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="People\AddNewPerson.cs">
@@ -71,10 +101,10 @@
     <Compile Include="ctrlAddPerson.Designer.cs">
       <DependentUpon>ctrlAddPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctrlPersonInfo.cs">
+    <Compile Include="People\ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctrlPersonInfo.Designer.cs">
+    <Compile Include="People\ctrlPersonInfo.Designer.cs">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlTableViewer.cs">
@@ -109,16 +139,31 @@
     <Compile Include="People\UpdatePerson.Designer.cs">
       <DependentUpon>UpdatePerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowUserInfo.cs">
+    <Compile Include="Users\frmShowUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowUserInfo.Designer.cs">
-      <DependentUpon>ShowUserInfo.cs</DependentUpon>
+    <Compile Include="Users\frmShowUserInfo.Designer.cs">
+      <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ctrlUserFilter.resx">
+      <DependentUpon>ctrlUserFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlUserInfo.resx">
+      <DependentUpon>ctrlUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmAddNewUser.resx">
+      <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLoginScreen.resx">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageUsers.resx">
+    <EmbeddedResource Include="Users\frmUpdateUser.resx">
+      <DependentUpon>frmUpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\AddNewPerson.resx">
@@ -127,7 +172,7 @@
     <EmbeddedResource Include="ctrlAddPerson.resx">
       <DependentUpon>ctrlAddPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctrlPersonInfo.resx">
+    <EmbeddedResource Include="People\ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTableViewer.resx">
@@ -155,8 +200,8 @@
     <EmbeddedResource Include="People\UpdatePerson.resx">
       <DependentUpon>UpdatePerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowUserInfo.resx">
-      <DependentUpon>ShowUserInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Users\frmShowUserInfo.resx">
+      <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -284,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add New User 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchPerson.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

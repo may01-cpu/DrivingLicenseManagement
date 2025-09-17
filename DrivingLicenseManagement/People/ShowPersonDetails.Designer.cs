@@ -60,9 +60,9 @@
             // 
             this.ctrlPersonInfo1.Location = new System.Drawing.Point(35, 111);
             this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.PersonID = 0;
             this.ctrlPersonInfo1.Size = new System.Drawing.Size(755, 374);
             this.ctrlPersonInfo1.TabIndex = 5;
+            this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
             // 
             // ShowPersonDetails
             // 

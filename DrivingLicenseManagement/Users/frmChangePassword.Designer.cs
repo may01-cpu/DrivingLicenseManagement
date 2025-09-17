@@ -1,6 +1,6 @@
 ﻿namespace DrivingLicenseManagement
 {
-    partial class ShowUserInfo
+    partial class frmChangePassword
     {
         /// <summary>
         /// Required designer variable.
@@ -29,24 +29,32 @@
         private void InitializeComponent()
         {
             this.ctrlPersonInfo1 = new DrivingLicenseManagement.ctrlPersonInfo();
+            this.ctrlUserInfo1 = new DrivingLicenseManagement.ctrlUserInfo();
             this.SuspendLayout();
             // 
             // ctrlPersonInfo1
             // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(31, 12);
+            this.ctrlPersonInfo1.Location = new System.Drawing.Point(12, 12);
             this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.PersonID = 0;
             this.ctrlPersonInfo1.Size = new System.Drawing.Size(757, 374);
             this.ctrlPersonInfo1.TabIndex = 0;
             // 
-            // ShowUserInfo
+            // ctrlUserInfo1
+            // 
+            this.ctrlUserInfo1.Location = new System.Drawing.Point(12, 392);
+            this.ctrlUserInfo1.Name = "ctrlUserInfo1";
+            this.ctrlUserInfo1.Size = new System.Drawing.Size(767, 111);
+            this.ctrlUserInfo1.TabIndex = 1;
+            // 
+            // frmChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(976, 626);
+            this.Controls.Add(this.ctrlUserInfo1);
             this.Controls.Add(this.ctrlPersonInfo1);
-            this.Name = "ShowUserInfo";
-            this.Text = "ShowUserInfo";
+            this.Name = "frmChangePassword";
+            this.Text = "frmChangePassword";
             this.ResumeLayout(false);
 
         }
@@ -54,5 +62,6 @@
         #endregion
 
         private ctrlPersonInfo ctrlPersonInfo1;
+        private ctrlUserInfo ctrlUserInfo1;
     }
 }

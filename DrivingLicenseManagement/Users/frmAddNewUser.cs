@@ -10,25 +10,16 @@ using System.Windows.Forms;
 
 namespace DrivingLicenseManagement
 {
-    public partial class ShowPersonDetails : Form
+    public partial class frmAddNewUser : Form
     {
-      
-        public ShowPersonDetails(int PersonID)
+        public frmAddNewUser()
         {
             InitializeComponent();
-            
-            ctrlPersonInfo1.LoadPersonInfo(PersonID);
-    
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
-        {
-
+            
         }
     }
 }

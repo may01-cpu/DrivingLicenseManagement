@@ -64,7 +64,7 @@ namespace DrivingLicenseManagement
             DataGridViewRow row = ctrlTableViewer1.SelectedRow;
             ShowPersonDetails showPersonDetails = new ShowPersonDetails(Convert.ToInt32(row.Cells["PersonID"].Value));
             showPersonDetails.ShowDialog();
-
+            refreshPeopleList();
         }
 
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)

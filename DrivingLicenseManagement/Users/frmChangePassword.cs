@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DrivingLicenseManagement
 {
-    public partial class ShowUserInfo : Form
+    public partial class frmChangePassword : Form
     {
-        public ShowUserInfo()
+        public frmChangePassword()
         {
             InitializeComponent();
         }

@@ -25,13 +25,13 @@ namespace DVLDBusinessLayer
         public string Phone { get; set; }
         public string Email { get; set; }
         public string ImagePath { get; set; }
-
         public int CountryID { get; set; }
 
+        public clsCountry Country;
         public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
                 
         enum eOpType { AddNewPerson, updatePerson }
-        private eOpType OperationType;
+        private eOpType OperationType=eOpType.AddNewPerson;
         public clsPeople()
         {
             PersonID = -1;
@@ -65,6 +65,7 @@ namespace DVLDBusinessLayer
             Email = email;
             ImagePath = imagePath;
             this.CountryID = country;
+            this.Country = clsCountry.Find(country);
             OperationType = eOpType.updatePerson;
         }
 
@@ -93,6 +94,31 @@ namespace DVLDBusinessLayer
             {
 
                 return new clsPeople(PersonID, nationalNo, firstName, lastName, secondName, thirdName, dateOfBirth, gender, address, phone, email, imagePath, countryID);
+                ;
+
+            }
+            else
+                return null;
+        }
+
+        public static clsPeople FindPersonByNationalNo(string NationalNo)
+        {
+            bool gender = false;
+            string address = "";
+            string phone = "";
+            string email = "";
+            string imagePath = "";
+            DateTime dateOfBirth = DateTime.Now;
+            string firstName = "";
+            string lastName = "";
+            string secondName = "";
+            string thirdName = "";
+            int countryID = -1;
+            int personID = -1;
+            if (clsPeopleDataAccess.GetPersonByNationalNo(NationalNo, ref personID, ref firstName, ref lastName, ref secondName, ref thirdName, ref dateOfBirth, ref gender, ref address, ref phone, ref email, ref imagePath, ref countryID))
+            {
+
+                return new clsPeople(personID, NationalNo, firstName, lastName, secondName, thirdName, dateOfBirth, gender, address, phone, email, imagePath, countryID);
                 ;
 
             }
