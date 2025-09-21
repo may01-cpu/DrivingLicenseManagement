@@ -68,6 +68,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private ctrlAddPerson ctrlAddPerson1;
+        public ctrlAddPerson ctrlAddPerson1;
     }
 }

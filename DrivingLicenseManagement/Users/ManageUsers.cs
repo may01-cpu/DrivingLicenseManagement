@@ -1,4 +1,5 @@
-﻿using DVLDBusinessLayer;
+﻿using DrivingLicenseManagement.Users;
+using DVLDBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +56,8 @@ namespace DrivingLicenseManagement
 
         private void _ShowUserDetails()
         {
-            frmShowUserInfo showUserInfo = new frmShowUserInfo();
+            DataGridViewRow row = dataGridView1.SelectedRows[0];    
+            frmShowUserInfo showUserInfo = new frmShowUserInfo(Convert.ToInt32(row.Cells["UserID"].Value),Convert.ToInt32(row.Cells["PersonID"].Value));
             showUserInfo.ShowDialog();
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -70,7 +72,7 @@ namespace DrivingLicenseManagement
         //
         private void _AddNewUser()
         {
-            frmAddNewUser addNewUser = new frmAddNewUser();
+           frmAddEditUser addNewUser = new frmAddEditUser();
             addNewUser.ShowDialog();
 
             _RefreshUsersList();

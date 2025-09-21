@@ -20,6 +20,7 @@ namespace DrivingLicenseManagement
         private string FilterColumn = "";
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             if (FilterColumn == "PersonID")
             {
                 // Allow digits, backspace, and control keys
@@ -78,6 +79,40 @@ namespace DrivingLicenseManagement
                     }
                 }
             }
+        }
+
+        private void ctrlUserFilter_Load(object sender, EventArgs e)
+        {
+            cmbFilter.SelectedIndex = 0;
+            txtFilter.Focus();
+        }
+
+        private void txtFilter_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFilter.Text.Trim()))
+            {
+                errorProvider1.SetError(txtFilter, "This field cannot be empty.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(txtFilter, string.Empty);
+            }
+        }
+
+        private void pbAddPerson_Click(object sender, EventArgs e)
+        {
+            AddNewPerson addNewPerson = new AddNewPerson();
+            addNewPerson.ctrlAddPerson1.DataBack += DataBackEvent;
+            addNewPerson.ShowDialog();
+        }
+
+        private void DataBackEvent(object sender, int PersonID)
+        {
+           
+            cmbFilter.SelectedIndex = 1;
+            txtFilter.Text = PersonID.ToString();
+            ctrlPersonInfo1.LoadPersonInfo(PersonID);
         }
     }
 }

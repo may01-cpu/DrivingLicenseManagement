@@ -270,5 +270,13 @@ namespace DVLDDataAccessLayer
             return isFound;
         }
 
+
+        //public static bool ChangePassword(string Username,string newPassword)
+        //{
+        //    int rowEffected = 0;
+        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+        //    string query=@"SET "
+        //    return (rowEffected > 0);
+        //}
     }
 }

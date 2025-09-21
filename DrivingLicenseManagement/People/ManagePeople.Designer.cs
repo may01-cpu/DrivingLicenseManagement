@@ -43,8 +43,12 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ctrlTableViewer1 = new DrivingLicenseManagement.ctrlTableViewer();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.LblRecordsNum = new System.Windows.Forms.Label();
             this.peopleMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -189,11 +193,45 @@
             this.ctrlTableViewer1.Size = new System.Drawing.Size(1427, 387);
             this.ctrlTableViewer1.TabIndex = 6;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DrivingLicenseManagement.Properties.Resources.AddPerson_32;
+            this.pictureBox2.Location = new System.Drawing.Point(1377, 152);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(60, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 600);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 25);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Records:";
+            // 
+            // LblRecordsNum
+            // 
+            this.LblRecordsNum.AutoSize = true;
+            this.LblRecordsNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRecordsNum.Location = new System.Drawing.Point(116, 600);
+            this.LblRecordsNum.Name = "LblRecordsNum";
+            this.LblRecordsNum.Size = new System.Drawing.Size(48, 25);
+            this.LblRecordsNum.TabIndex = 23;
+            this.LblRecordsNum.Text = "???";
+            // 
             // ManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1449, 675);
+            this.Controls.Add(this.LblRecordsNum);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.cmbFilter);
             this.Controls.Add(this.label2);
@@ -206,6 +244,7 @@
             this.Load += new System.EventHandler(this.ManagePeople_Load);
             this.peopleMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +265,8 @@
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LblRecordsNum;
     }
 }

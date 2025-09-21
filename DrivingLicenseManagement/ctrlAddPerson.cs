@@ -8,6 +8,10 @@ namespace DrivingLicenseManagement
 {
     public partial class ctrlAddPerson : UserControl
     {
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        // Declare an event using the delegate
+        public event DataBackEventHandler DataBack;
         enum PersonMode
         {
             AddNew,
@@ -126,7 +130,9 @@ namespace DrivingLicenseManagement
 
             if (CurrentPerson.Save())
             {
+         
                 MessageBox.Show("Person saved successfully.");
+                DataBack?.Invoke(this, CurrentPerson.PersonID);
                 Success = true;
                 Parent.FindForm()?.Close();
             }

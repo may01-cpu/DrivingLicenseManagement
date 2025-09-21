@@ -59,11 +59,11 @@
     <Compile Include="ctrlUserInfo.Designer.cs">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users\frmAddNewUser.cs">
+    <Compile Include="Users\frmAddEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users\frmAddNewUser.Designer.cs">
-      <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    <Compile Include="Users\frmAddEditUser.Designer.cs">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\frmChangePassword.cs">
       <SubType>Form</SubType>
@@ -76,12 +76,6 @@
     </Compile>
     <Compile Include="frmLoginScreen.Designer.cs">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Users\frmUpdateUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Users\frmUpdateUser.Designer.cs">
-      <DependentUpon>frmUpdateUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\ManageUsers.cs">
       <SubType>Form</SubType>
@@ -151,17 +145,14 @@
     <EmbeddedResource Include="ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users\frmAddNewUser.resx">
-      <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    <EmbeddedResource Include="Users\frmAddEditUser.resx">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoginScreen.resx">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Users\frmUpdateUser.resx">
-      <DependentUpon>frmUpdateUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>

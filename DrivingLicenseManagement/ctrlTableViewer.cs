@@ -51,5 +51,21 @@ namespace DrivingLicenseManagement
                 RowRightClick?.Invoke(this, e);
             }
         }
+
+     
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) 
+            {
+                var personId = Convert.ToInt32(
+                    dataGridView1.Rows[e.RowIndex].Cells["PersonID"].Value
+                );
+
+                ShowPersonDetails showPersonDetails = new ShowPersonDetails(personId);
+                showPersonDetails.ShowDialog();
+            }
+        }
+
     }
 }

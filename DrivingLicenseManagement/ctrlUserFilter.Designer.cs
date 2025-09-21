@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pbAddPerson = new System.Windows.Forms.PictureBox();
             this.pbFilter = new System.Windows.Forms.PictureBox();
@@ -35,9 +36,11 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ctrlPersonInfo1 = new DrivingLicenseManagement.ctrlPersonInfo();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -64,6 +67,7 @@
             this.pbAddPerson.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAddPerson.TabIndex = 23;
             this.pbAddPerson.TabStop = false;
+            this.pbAddPerson.Click += new System.EventHandler(this.pbAddPerson_Click);
             // 
             // pbFilter
             // 
@@ -84,6 +88,7 @@
             this.txtFilter.Size = new System.Drawing.Size(184, 26);
             this.txtFilter.TabIndex = 21;
             this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtFilter.Validating += new System.ComponentModel.CancelEventHandler(this.txtFilter_Validating);
             // 
             // cmbFilter
             // 
@@ -115,6 +120,10 @@
             this.ctrlPersonInfo1.Size = new System.Drawing.Size(757, 374);
             this.ctrlPersonInfo1.TabIndex = 0;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ctrlUserFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -123,10 +132,12 @@
             this.Controls.Add(this.ctrlPersonInfo1);
             this.Name = "ctrlUserFilter";
             this.Size = new System.Drawing.Size(771, 488);
+            this.Load += new System.EventHandler(this.ctrlUserFilter_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -140,5 +151,6 @@
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

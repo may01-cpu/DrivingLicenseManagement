@@ -36,6 +36,7 @@ namespace DrivingLicenseManagement
                                                      "GendorCaption", "DateOfBirth", "NationalityCountryID",
                                                      "Phone", "Email");
             ctrlTableViewer1.DataSource = _dtPeople;
+            LblRecordsNum.Text=_dtAllPeople.Rows.Count.ToString();
         }
 
         private void ManagePeople_Load(object sender, EventArgs e)
@@ -47,12 +48,6 @@ namespace DrivingLicenseManagement
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void ctrlTableViewer1_Load(object sender, EventArgs e)
-        {
-           
-
         }
         private void ctrlTableViewer1_RowRightClick(object sender, DataGridViewCellMouseEventArgs e)
         { 
@@ -143,11 +138,6 @@ namespace DrivingLicenseManagement
                 }
             }
         }
-
-        private void ctrlFilter1_Load(object sender, EventArgs e)
-        {
-          
-        }
        
         private string FilterColumn = "";
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,36 +151,16 @@ namespace DrivingLicenseManagement
             {
                 txtFilter.Visible = true;
             }
-            switch (cmbFilter.SelectedItem.ToString())
+
+            if(cmbFilter.SelectedItem.ToString() == "None")
             {
-                case "National No":
-                    FilterColumn = "NationalNo";
-                    break;
-                case "First Name":
-                    FilterColumn = "FirstName";
-                    break;
-                case
-                    "Second Name":
-                    FilterColumn = "SecondName";
-                    break;
-                case "Third Name":
-                    FilterColumn = "ThirdName";
-                    break;
-                case "Last Name":
-                    FilterColumn = "LastName";
-                    break;
-                case "Person ID":
-                    FilterColumn = "PersonID";
-                    break;
-                case "Address":
-                    FilterColumn = "Address";
-                    break;
-                case "None":
-                    FilterColumn = "";
-                    break;
-
-
+                FilterColumn = "";
             }
+            else
+            {
+                FilterColumn = cmbFilter.SelectedItem.ToString().Replace(" ", "");
+            }
+            
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
@@ -228,6 +198,13 @@ namespace DrivingLicenseManagement
                     e.Handled = true; // block the key
                 }
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            AddNewPerson frm =new AddNewPerson();
+            frm.ShowDialog();
+            refreshPeopleList();
         }
     }
 }
