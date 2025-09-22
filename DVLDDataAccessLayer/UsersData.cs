@@ -15,7 +15,7 @@ namespace DVLDDataAccessLayer
         public static bool FindUser(string username, string password, ref bool isActive, ref int UserID, ref int PersonID)
         {
             bool userFound = false;
-            string query = "SELECT UserID, IsActive,UserID FROM Users WHERE Username = @Username AND Password = @Password";
+            string query = "SELECT UserID, IsActive ,PersonID FROM Users WHERE Username = @Username AND Password = @Password";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Username", username);
@@ -29,7 +29,7 @@ namespace DVLDDataAccessLayer
                     userFound = true;
                     isActive = Convert.ToBoolean(reader["IsActive"]);
                     UserID = (int)reader["UserID"];
-                    PersonID = (int)reader["UserID"];
+                    PersonID = (int)reader["PersonID"];
                 }
                 reader.Close();
             }
@@ -115,7 +115,7 @@ namespace DVLDDataAccessLayer
                         Username = reader["UserName"] != DBNull.Value ? (string)reader["UserName"] : "";
                         Password = reader["Password"] != DBNull.Value ? (string)reader["Password"] : "";
                         IsActive = reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(reader["IsActive"]) : false;
-                        PersonID = reader["UserID"] != DBNull.Value ? Convert.ToInt32(reader["UserID"]) : -1;
+                        PersonID = reader["PersonID"] != DBNull.Value ? Convert.ToInt32(reader["PersonID"]) : -1;
 
 
                     }
@@ -145,16 +145,16 @@ namespace DVLDDataAccessLayer
 
             string query = @"
                 INSERT INTO Users 
-                (UserName,Password,IsActive,UserID) 
+                (UserName,Password,IsActive,PersonID) 
                 VALUES 
-                (@UserName, @Password, @IsActive, @UserID);
+                (@UserName, @Password, @IsActive, @PersonID);
                 SELECT SCOPE_IDENTITY();";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@IsActive", IsActive);
-            command.Parameters.AddWithValue("@UserID", PersonID);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
             try
             {
                 connection.Open();
@@ -176,25 +176,21 @@ namespace DVLDDataAccessLayer
         }
 
         public static bool UpdateUser(int UserID, string UserName,
-          string Password, bool IsActive,
-          int PersonID)
+          string Password,bool IsActive)
         {
             int rowsAffected = 0;
             string query = @"
                 UPDATE Users SET 
                     UserName = @UserName,
-                    Password = @Password,
-                    LastName = @LastName,
-                    IsActive = @IsActive,
-                    UserID = @UserID,
+                    [Password] = @Password,
+                    IsActive = @IsActive
                 WHERE UserID = @UserID";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@IsAcitve", IsActive);
-            command.Parameters.AddWithValue("UserID", PersonID);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
             try
             {
                 connection.Open();
@@ -215,7 +211,7 @@ namespace DVLDDataAccessLayer
         public static bool DeleteUser(int UserID)
         {
             int rowsAffected = 0;
-            string query = "DELETE FROM People WHERE UserID = @UserID";
+            string query = "DELETE FROM Users WHERE UserID = @UserID";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserID", UserID);
@@ -270,13 +266,67 @@ namespace DVLDDataAccessLayer
             return isFound;
         }
 
+        public static bool IsUserExistBYPersonID(int PersonID)
+        {
+            bool isFound = false;
 
-        //public static bool ChangePassword(string Username,string newPassword)
-        //{
-        //    int rowEffected = 0;
-        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-        //    string query=@"SET "
-        //    return (rowEffected > 0);
-        //}
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM Users WHERE PersonID=@PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool ChangePassword(int UserID, string newPassword)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"
+                UPDATE Users SET 
+                    [Password] = @Password
+                WHERE UserID = @UserID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", UserID);
+         
+            command.Parameters.AddWithValue("@Password", newPassword);
+            
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                rowsAffected = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
+        }
     }
 }

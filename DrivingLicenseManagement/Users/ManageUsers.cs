@@ -62,6 +62,7 @@ namespace DrivingLicenseManagement
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            dataGridView1.Rows[e.RowIndex].Selected = true;
             _ShowUserDetails();
         }
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,21 +86,34 @@ namespace DrivingLicenseManagement
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _AddNewUser();
+            
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            frmAddEditUser editUser = new frmAddEditUser(Convert.ToInt32(row.Cells["UserID"].Value));
+            editUser.ShowDialog();
+            _RefreshUsersList();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            clsUser.DeleteUser(Convert.ToInt32(row.Cells["UserID"].Value)); 
+            _RefreshUsersList() ;
 
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
 
+            frmChangePassword frm = new frmChangePassword(Convert.ToInt32(row.Cells["UserID"].Value));
+            frm.ShowDialog();
+            _RefreshUsersList();
         }
 
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)

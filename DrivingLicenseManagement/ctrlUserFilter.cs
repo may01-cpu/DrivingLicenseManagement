@@ -17,7 +17,17 @@ namespace DrivingLicenseManagement
         {
             InitializeComponent();
         }
+
+   
+
         private string FilterColumn = "";
+
+        private clsPeople _Person;
+        public clsPeople SelectedPersonInfo
+        {
+            get { return _Person; }
+        }
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -64,14 +74,18 @@ namespace DrivingLicenseManagement
                 if (FilterColumn == "NationalNo")
                 {
                     ctrlPersonInfo1.LoadPersonInfo(txtFilter.Text);
+                    _Person = ctrlPersonInfo1.SelectedPersonInfo;
                 }
                 else if (FilterColumn == "PersonID")
                 {
                     if (int.TryParse(txtFilter.Text, out int personId))
                     {
-                        ;
+                     
                         ctrlPersonInfo1.LoadPersonInfo(personId);
+                        _Person = ctrlPersonInfo1.SelectedPersonInfo;
+
                     }
+
                     else
                     {
                         MessageBox.Show("Invalid Person ID. Please enter a valid number.", "Input Error",
@@ -85,6 +99,7 @@ namespace DrivingLicenseManagement
         {
             cmbFilter.SelectedIndex = 0;
             txtFilter.Focus();
+          
         }
 
         private void txtFilter_Validating(object sender, CancelEventArgs e)
@@ -113,6 +128,19 @@ namespace DrivingLicenseManagement
             cmbFilter.SelectedIndex = 1;
             txtFilter.Text = PersonID.ToString();
             ctrlPersonInfo1.LoadPersonInfo(PersonID);
+        }
+
+        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void UpdatePersonInfo(clsPeople Person)
+        {
+            _Person =Person;
+            cmbFilter.SelectedIndex = 1;
+            txtFilter.Text = Person.PersonID.ToString();
+            ctrlPersonInfo1.LoadPersonInfo(Person.PersonID);
         }
     }
 }

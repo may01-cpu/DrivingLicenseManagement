@@ -38,6 +38,7 @@ namespace DVLDBusinessLayer
             Username = username;
             IsActive = isActive;
             Person = clsPeople.FindPersonByID(personID);
+            _OperationType = eOpType.UpdateUser;
 
         }
 
@@ -77,7 +78,7 @@ namespace DVLDBusinessLayer
 
         private bool _UpdateUser()
         {
-            return clsUsersData.UpdateUser(UserID, Username, Password, IsActive, Person.PersonID);
+            return clsUsersData.UpdateUser(UserID, Username, Password, IsActive);
         }
         public bool Save()
         {
@@ -120,6 +121,10 @@ namespace DVLDBusinessLayer
             return clsUsersData.IsUserExist(UserID);
         }
 
+        public static bool IsUserExistsByPersonID(int PersonID)
+        {
+            return clsUsersData.IsUserExist(PersonID);
+        }
         public static clsUser GetUserByID(int UserID)
         {
             int personID = -1;
@@ -135,5 +140,12 @@ namespace DVLDBusinessLayer
                 return null;
             }
         }
+   
+        public bool ChangePassword(string Password)
+        {
+            return clsUsersData.ChangePassword(this.UserID, Password);
+        }
+    
+    
     }
 }
