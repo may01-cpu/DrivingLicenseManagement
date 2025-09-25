@@ -53,5 +53,11 @@ namespace DrivingLicenseManagement
             ManageAppTypes appTypes=new ManageAppTypes();
             appTypes.ShowDialog();
         }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageTestType manageTestType=new ManageTestType();
+            manageTestType.ShowDialog();
+        }
     }
 }

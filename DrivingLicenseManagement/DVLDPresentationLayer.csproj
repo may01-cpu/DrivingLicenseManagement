@@ -53,11 +53,23 @@
     <Compile Include="Applications\ManageAppTypes.Designer.cs">
       <DependentUpon>ManageAppTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\ManageTestType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\ManageTestType.Designer.cs">
+      <DependentUpon>ManageTestType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\UpdateApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Applications\UpdateApplicationType.Designer.cs">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\UpdateTestTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\UpdateTestTypes.Designer.cs">
+      <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlUserFilter.cs">
       <SubType>UserControl</SubType>
@@ -154,8 +166,14 @@
     <EmbeddedResource Include="Applications\ManageAppTypes.resx">
       <DependentUpon>ManageAppTypes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Applications\ManageTestType.resx">
+      <DependentUpon>ManageTestType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Applications\UpdateApplicationType.resx">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\UpdateTestTypes.resx">
+      <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlUserFilter.resx">
       <DependentUpon>ctrlUserFilter.cs</DependentUpon>
@@ -374,6 +392,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ApplicationTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit 322.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
