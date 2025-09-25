@@ -103,6 +103,56 @@ namespace DrivingLicenseManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Application_Types_512 {
+            get {
+                object obj = ResourceManager.GetObject("Application Types 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Application_Types_64 {
+            get {
+                object obj = ResourceManager.GetObject("Application Types 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Application_Types_641 {
+            get {
+                object obj = ResourceManager.GetObject("Application Types 641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Applications_64 {
+            get {
+                object obj = ResourceManager.GetObject("Applications 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ApplicationTitle {
+            get {
+                object obj = ResourceManager.GetObject("ApplicationTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Calendar_32 {
             get {
                 object obj = ResourceManager.GetObject("Calendar 32", resourceCulture);
@@ -153,9 +203,29 @@ namespace DrivingLicenseManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Detain_32 {
+            get {
+                object obj = ResourceManager.GetObject("Detain 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap driver {
             get {
                 object obj = ResourceManager.GetObject("driver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Driver_License_48 {
+            get {
+                object obj = ResourceManager.GetObject("Driver License 48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +256,16 @@ namespace DrivingLicenseManagement.Properties {
         internal static System.Drawing.Bitmap edit_32 {
             get {
                 object obj = ResourceManager.GetObject("edit 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_321 {
+            get {
+                object obj = ResourceManager.GetObject("edit 321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +326,26 @@ namespace DrivingLicenseManagement.Properties {
         internal static System.Drawing.Bitmap man_showing_business_card_car {
             get {
                 object obj = ResourceManager.GetObject("man-showing-business-card-car", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Manage_Applications_32 {
+            get {
+                object obj = ResourceManager.GetObject("Manage Applications 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Manage_Applications_64 {
+            get {
+                object obj = ResourceManager.GetObject("Manage Applications 64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -376,6 +476,16 @@ namespace DrivingLicenseManagement.Properties {
         internal static System.Drawing.Bitmap SignOut_641 {
             get {
                 object obj = ResourceManager.GetObject("SignOut 641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TestType_32 {
+            get {
+                object obj = ResourceManager.GetObject("TestType 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

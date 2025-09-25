@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrivingLicenseManagement.Applications;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +46,12 @@ namespace DrivingLicenseManagement
         {
             ManageUsers Users=new ManageUsers();
             Users.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAppTypes appTypes=new ManageAppTypes();
+            appTypes.ShowDialog();
         }
     }
 }

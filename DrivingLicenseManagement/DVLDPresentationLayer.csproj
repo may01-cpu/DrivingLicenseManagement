@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\ManageAppTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\ManageAppTypes.Designer.cs">
+      <DependentUpon>ManageAppTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\UpdateApplicationType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\UpdateApplicationType.Designer.cs">
+      <DependentUpon>UpdateApplicationType.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrlUserFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,6 +151,12 @@
     <Compile Include="Users\frmShowUserInfo.Designer.cs">
       <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Applications\ManageAppTypes.resx">
+      <DependentUpon>ManageAppTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\UpdateApplicationType.resx">
+      <DependentUpon>UpdateApplicationType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrlUserFilter.resx">
       <DependentUpon>ctrlUserFilter.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +341,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SearchPerson.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Driver License 48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manage Applications 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Detain 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application Types 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestType 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manage Applications 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application Types 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application Types 641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationTitle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

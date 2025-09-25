@@ -58,6 +58,38 @@ namespace DVLDBusinessLayer
             }
 
         }
+        public static clsUser GetUserByID(int UserID)
+        {
+            int personID = -1;
+            string username = "";
+            string password = "";
+            bool isActive = false;
+            if (clsUsersData.GetUserByID(UserID, ref username, ref password, ref personID, ref isActive))
+            {
+                return new clsUser(UserID, personID, username, password, isActive);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static clsUser GetUserByPersonID(int PersonID)
+        {
+            int UserID = -1;
+            string username = "";
+            string password = "";
+            bool isActive = false;
+            if (clsUsersData.GetUserByPersonID(PersonID, ref username, ref password, ref UserID, ref isActive))
+            {
+                return new clsUser(UserID, PersonID, username, password, isActive);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         public static DataTable ListAllUsers()
         {
@@ -125,22 +157,6 @@ namespace DVLDBusinessLayer
         {
             return clsUsersData.IsUserExist(PersonID);
         }
-        public static clsUser GetUserByID(int UserID)
-        {
-            int personID = -1;
-            string username = "";
-            string password = "";
-            bool isActive = false;
-            if (clsUsersData.GetUserByID(UserID, ref username, ref password, ref personID, ref isActive))
-            {
-                return new clsUser(UserID, personID, username, password, isActive);
-            }
-            else
-            {
-                return null;
-            }
-        }
-   
         public bool ChangePassword(string Password)
         {
             return clsUsersData.ChangePassword(this.UserID, Password);

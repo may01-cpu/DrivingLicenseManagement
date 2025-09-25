@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,6 +49,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LblRecordsNum = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -107,10 +110,11 @@
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(416, 206);
+            this.txtFilter.Location = new System.Drawing.Point(293, 203);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(138, 26);
             this.txtFilter.TabIndex = 19;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // cmbFilterUsers
             // 
@@ -126,6 +130,7 @@
             this.cmbFilterUsers.Name = "cmbFilterUsers";
             this.cmbFilterUsers.Size = new System.Drawing.Size(162, 28);
             this.cmbFilterUsers.TabIndex = 18;
+            this.cmbFilterUsers.SelectedIndexChanged += new System.EventHandler(this.cmbFilterUsers_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -149,7 +154,7 @@
             this.sendEmailToolStripMenuItem,
             this.phoneCallToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 261);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(225, 228);
             // 
             // showDetailsToolStripMenuItem
             // 
@@ -161,42 +166,42 @@
             // addNewUserToolStripMenuItem
             // 
             this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.addNewUserToolStripMenuItem.Text = "Add New User";
             this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.addNewUserToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // sendEmailToolStripMenuItem
             // 
             this.sendEmailToolStripMenuItem.Name = "sendEmailToolStripMenuItem";
-            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.sendEmailToolStripMenuItem.Text = "Send Email";
             this.sendEmailToolStripMenuItem.Click += new System.EventHandler(this.sendEmailToolStripMenuItem_Click);
             // 
             // phoneCallToolStripMenuItem
             // 
             this.phoneCallToolStripMenuItem.Name = "phoneCallToolStripMenuItem";
-            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.phoneCallToolStripMenuItem.Text = "Phone Call";
             this.phoneCallToolStripMenuItem.Click += new System.EventHandler(this.phoneCallToolStripMenuItem_Click);
             // 
@@ -211,11 +216,24 @@
             this.cmbIsActive.Name = "cmbIsActive";
             this.cmbIsActive.Size = new System.Drawing.Size(109, 28);
             this.cmbIsActive.TabIndex = 23;
+            this.cmbIsActive.SelectedIndexChanged += new System.EventHandler(this.cmbIsActive_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FloralWhite;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.DarkRed;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(17, 259);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
@@ -248,11 +266,33 @@
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
+            // LblRecordsNum
+            // 
+            this.LblRecordsNum.AutoSize = true;
+            this.LblRecordsNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRecordsNum.Location = new System.Drawing.Point(116, 652);
+            this.LblRecordsNum.Name = "LblRecordsNum";
+            this.LblRecordsNum.Size = new System.Drawing.Size(48, 25);
+            this.LblRecordsNum.TabIndex = 26;
+            this.LblRecordsNum.Text = "???";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 652);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 25);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Records:";
+            // 
             // ManageUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1104, 704);
+            this.Controls.Add(this.LblRecordsNum);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbIsActive);
             this.Controls.Add(this.pictureBox2);
@@ -296,5 +336,7 @@
         private System.Windows.Forms.ToolStripMenuItem phoneCallToolStripMenuItem;
         private System.Windows.Forms.ComboBox cmbIsActive;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label LblRecordsNum;
+        private System.Windows.Forms.Label label4;
     }
 }
