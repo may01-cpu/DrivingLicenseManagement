@@ -1,4 +1,5 @@
 ﻿using DrivingLicenseManagement.Applications;
+using DrivingLicenseManagement.Applications.LocalDrivingLicense;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,6 +59,33 @@ namespace DrivingLicenseManagement
         {
             ManageTestType manageTestType=new ManageTestType();
             manageTestType.ShowDialog();
+        }
+
+        private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageLocalDLApp frmManageLocalDLApp = new frmManageLocalDLApp();
+            frmManageLocalDLApp.ShowDialog();
+        }
+
+        private void detainLicencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void internationalDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddEditLocalDLApp frmAddEditLocalDLApp = new frmAddEditLocalDLApp();
+            frmAddEditLocalDLApp.ShowDialog();
         }
     }
 }

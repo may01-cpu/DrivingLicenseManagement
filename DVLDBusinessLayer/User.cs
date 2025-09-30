@@ -12,6 +12,7 @@ namespace DVLDBusinessLayer
 {
     public class clsUser
     {
+        public static clsUser LoggedInUser = null;
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

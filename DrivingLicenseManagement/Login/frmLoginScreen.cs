@@ -53,7 +53,7 @@ namespace DrivingLicenseManagement
 
                     }
                     Properties.Settings.Default.Save();
-                    
+                    clsUser.LoggedInUser = user;
                     MainForm mainForm = new MainForm();
                     this.Hide();
                     mainForm.ShowDialog();

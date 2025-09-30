@@ -47,28 +47,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\ManageAppTypes.cs">
+    <Compile Include="Applications\ApplicationTypes\ManageAppTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\ManageAppTypes.Designer.cs">
+    <Compile Include="Applications\ApplicationTypes\ManageAppTypes.Designer.cs">
       <DependentUpon>ManageAppTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\ManageTestType.cs">
+    <Compile Include="Applications\LocalDrivingLicense\frmAddEditLocalDLApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\ManageTestType.Designer.cs">
+    <Compile Include="Applications\LocalDrivingLicense\frmAddEditLocalDLApp.Designer.cs">
+      <DependentUpon>frmAddEditLocalDLApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\LocalDrivingLicense\frmManageLocalDLApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\LocalDrivingLicense\frmManageLocalDLApp.Designer.cs">
+      <DependentUpon>frmManageLocalDLApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\TestTypes\ManageTestType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\TestTypes\ManageTestType.Designer.cs">
       <DependentUpon>ManageTestType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\UpdateApplicationType.cs">
+    <Compile Include="Applications\ApplicationTypes\UpdateApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\UpdateApplicationType.Designer.cs">
+    <Compile Include="Applications\ApplicationTypes\UpdateApplicationType.Designer.cs">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\UpdateTestTypes.cs">
+    <Compile Include="Applications\TestTypes\UpdateTestTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\UpdateTestTypes.Designer.cs">
+    <Compile Include="Applications\TestTypes\UpdateTestTypes.Designer.cs">
       <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlUserFilter.cs">
@@ -95,10 +107,10 @@
     <Compile Include="Users\frmChangePassword.Designer.cs">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLoginScreen.cs">
+    <Compile Include="Login\frmLoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLoginScreen.Designer.cs">
+    <Compile Include="Login\frmLoginScreen.Designer.cs">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\ManageUsers.cs">
@@ -163,16 +175,22 @@
     <Compile Include="Users\frmShowUserInfo.Designer.cs">
       <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Applications\ManageAppTypes.resx">
+    <EmbeddedResource Include="Applications\ApplicationTypes\ManageAppTypes.resx">
       <DependentUpon>ManageAppTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\ManageTestType.resx">
+    <EmbeddedResource Include="Applications\LocalDrivingLicense\frmAddEditLocalDLApp.resx">
+      <DependentUpon>frmAddEditLocalDLApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\LocalDrivingLicense\frmManageLocalDLApp.resx">
+      <DependentUpon>frmManageLocalDLApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\TestTypes\ManageTestType.resx">
       <DependentUpon>ManageTestType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\UpdateApplicationType.resx">
+    <EmbeddedResource Include="Applications\ApplicationTypes\UpdateApplicationType.resx">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\UpdateTestTypes.resx">
+    <EmbeddedResource Include="Applications\TestTypes\UpdateTestTypes.resx">
       <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlUserFilter.resx">
@@ -187,7 +205,7 @@
     <EmbeddedResource Include="Users\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLoginScreen.resx">
+    <EmbeddedResource Include="Login\frmLoginScreen.resx">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\ManageUsers.resx">
@@ -395,6 +413,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit 322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LocalDriving License.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Local 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Local Driving License 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddAppointment 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Person 40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add New User 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LocalDriving License1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Application 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WallPaper2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

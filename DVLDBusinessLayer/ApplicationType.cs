@@ -14,7 +14,12 @@ namespace DVLDBusinessLayer
         public string ApplicationTypeName { get; set; }
         public decimal Fee { get; set; }
 
-
+        public clsApplicationType()
+        {
+            ApplicationTypeID = -1;
+            ApplicationTypeName = "";
+            Fee = 0;
+        }
         private clsApplicationType(int id, string title, decimal fee)
         {
             ApplicationTypeID = id;

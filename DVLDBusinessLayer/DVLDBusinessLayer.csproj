@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application.cs" />
     <Compile Include="ApplicationType.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="GlobalSettings.cs" />
+    <Compile Include="LicenseClasses.cs" />
+    <Compile Include="LocalDLApplication.cs" />
     <Compile Include="People.cs" />
     <Compile Include="PhotoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
