@@ -65,10 +65,10 @@
     <Compile Include="Applications\LocalDrivingLicense\frmManageLocalDLApp.Designer.cs">
       <DependentUpon>frmManageLocalDLApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\TestTypes\ManageTestType.cs">
+    <Compile Include="Test\TestTypes\ManageTestType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\TestTypes\ManageTestType.Designer.cs">
+    <Compile Include="Test\TestTypes\ManageTestType.Designer.cs">
       <DependentUpon>ManageTestType.cs</DependentUpon>
     </Compile>
     <Compile Include="Applications\ApplicationTypes\UpdateApplicationType.cs">
@@ -77,10 +77,10 @@
     <Compile Include="Applications\ApplicationTypes\UpdateApplicationType.Designer.cs">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\TestTypes\UpdateTestTypes.cs">
+    <Compile Include="Test\TestTypes\UpdateTestTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\TestTypes\UpdateTestTypes.Designer.cs">
+    <Compile Include="Test\TestTypes\UpdateTestTypes.Designer.cs">
       <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrlUserFilter.cs">
@@ -184,13 +184,13 @@
     <EmbeddedResource Include="Applications\LocalDrivingLicense\frmManageLocalDLApp.resx">
       <DependentUpon>frmManageLocalDLApp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\TestTypes\ManageTestType.resx">
+    <EmbeddedResource Include="Test\TestTypes\ManageTestType.resx">
       <DependentUpon>ManageTestType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\ApplicationTypes\UpdateApplicationType.resx">
       <DependentUpon>UpdateApplicationType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\TestTypes\UpdateTestTypes.resx">
+    <EmbeddedResource Include="Test\TestTypes\UpdateTestTypes.resx">
       <DependentUpon>UpdateTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlUserFilter.resx">

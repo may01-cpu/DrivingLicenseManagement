@@ -13,10 +13,10 @@ namespace DVLDBusinessLayer
         public int TestTypeID { get; set; }
         public string TestTypeName { get; set; }
         public string TestTypeDescription { get; set; }
-        public decimal Fee { get; set; }      
+        public decimal Fee { get; set; }
 
 
-        private clsTestType(int id, string title,string description, decimal fee)
+        private clsTestType(int id, string title, string description, decimal fee)
         {
             TestTypeID = id;
             TestTypeName = title;
@@ -33,9 +33,9 @@ namespace DVLDBusinessLayer
             string title = "";
             string description = "";
             decimal fee = 0;
-            if (clsTestTypesData.GetTestTypeByID(ID,ref title,ref description,ref fee))
+            if (clsTestTypesData.GetTestTypeByID(ID, ref title, ref description, ref fee))
             {
-                return new clsTestType(ID, title,description, fee);
+                return new clsTestType(ID, title, description, fee);
             }
             else
             {
