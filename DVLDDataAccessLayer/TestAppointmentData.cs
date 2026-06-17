@@ -12,14 +12,19 @@ namespace DVLDDataAccessLayer
 {
     public class clsTestAppointmentData
     {
-        public static DataTable GetAllTestAppointments()
+        public static DataTable GetAllTestAppointments(int LocalAppID)
         {
             DataTable dt = new DataTable();
+
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT  *
+            string query = @"SELECT  TestAppointmentID,AppointmentDate, PaidFees,IsLocked
                             FROM   TestAppointments
+                            WHERE LocalDrivingLicenseApplicationID=@LocalAppID
                             ORDER BY AppointmentDate";
+
             SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalAppID", LocalAppID);
+
             try
             {
                 connection.Open();

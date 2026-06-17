@@ -1,33 +1,68 @@
 ﻿using DVLDDataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLDBusinessLayer
 {
-    public class clsLocalDLApplication:clsApplication
+    public class clsLocalDLApplication : clsApplication
     {
-        public int LocalApplicationID {  get; set; }
-        public clsLicenseClasses LicenseClass {  get; set; }
+        public int LocalApplicationID { get; set; }
+        public clsLicenseClasses LicenseClass { get; set; }
 
+        public int PassedTests { get; set; }
         private enum eOperation { Add, Update }
         private eOperation _operation;
         public clsLocalDLApplication()
         {
             LocalApplicationID = -1;
-            LicenseClass= new clsLicenseClasses();
+            LicenseClass = new clsLicenseClasses();
+            PassedTests= 0;
             _operation = eOperation.Add;
-         
+
         }
         public clsLocalDLApplication(int LicenseClass)
         {
-            
+
             //this.LicenseClass=clsLicenseClasses.;
             _operation = eOperation.Update;
-         
+
         }
+
+        private clsLocalDLApplication(int LocalAppID, int ApplicationID, clsLicenseClasses licenseClass,int PassedTests)
+        {
+            LocalApplicationID = LocalAppID;
+            LicenseClass = licenseClass;
+            clsApplication Application = FindApplication(ApplicationID);
+            this.ApplicationID = ApplicationID;
+            Applicant = Application.Applicant;
+            ApplicationDate = Application.ApplicationDate;
+            ApplicationType = Application.ApplicationType;
+            ApplicationStatus = Application.ApplicationStatus;
+            LastStatusDate = Application.LastStatusDate;
+            ApplicationFees = Application.ApplicationFees;
+            CreatedBy = Application.CreatedBy;
+            this.PassedTests = PassedTests;
+
+            _operation = eOperation.Update;
+        }
+        public static clsLocalDLApplication FindLocalApplication(int LocalAppID)
+        {
+
+            int LicenseClassID = -1;
+            int AppID = -1;
+            int PassedTests=clsApplicationData.GetPassedTests(LocalAppID);
+
+            if (clsApplicationData.GetLocalApplicationByID(LocalAppID, ref AppID, ref LicenseClassID) && PassedTests !=-1)
+            {
+                return new clsLocalDLApplication(LocalAppID, AppID, clsLicenseClasses.FindLicenseClass(LicenseClassID),PassedTests);
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+
         private bool _AddLocalDLApplication()
         {
             ApplicationID = clsApplicationData.AddApplication(Applicant.PersonID, ApplicationDate, ApplicationType.ApplicationTypeID, (byte)ApplicationStatus, LastStatusDate, ApplicationFees, CreatedBy.UserID);
@@ -37,8 +72,8 @@ namespace DVLDBusinessLayer
                 return LocalApplicationID != -1;
             }
 
-                return false;
-        
+            return false;
+
         }
 
         private bool _UpdateLocalDlApplication()
@@ -52,14 +87,14 @@ namespace DVLDBusinessLayer
             {
                 case eOperation.Add:
                     if (_AddLocalDLApplication())
-                     {
-                         _operation = eOperation.Update;
-                         return true;
-                     }
-                     else
-                     {
-                         return false;
-                     }
+                    {
+                        _operation = eOperation.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 case eOperation.Update:
                     return _UpdateLocalDlApplication();
             }
@@ -73,10 +108,10 @@ namespace DVLDBusinessLayer
             return clsApplicationData.IsApplicationExists(PersonID, LicenseClassID);
         }
 
-         public static bool CancelLocalApplication(int LocalAppID)
+        public static bool CancelLocalApplication(int LocalAppID)
         {
-           return clsApplicationData.CancelLocalApplication(LocalAppID);
-            
+            return clsApplicationData.CancelLocalApplication(LocalAppID);
+
         }
 
 

@@ -51,9 +51,13 @@ namespace DVLDBusinessLayer
             OperationType = eOpType.Update;
         }
 
-        public static DataTable ListAllTestAppointments()
+        //public static clsTestAppointment FindTestAppointment(int TestAppointmentID)
+        //{
+           
+        //}
+        public static DataTable ListAllTestAppointments(int LocalAppID)
         {
-            DataTable dt = clsTestAppointmentData.GetAllTestAppointments();
+            DataTable dt = clsTestAppointmentData.GetAllTestAppointments(LocalAppID);
             return dt;
         }
 

@@ -1,4 +1,5 @@
-﻿using DVLDBusinessLayer;
+﻿using DrivingLicenseManagement.Test;
+using DVLDBusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,11 +46,9 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
             _ApplyFilter();
         }
 
-        
         private void frmManageLocalDLApp_Load(object sender, EventArgs e)
         {
             _Refresh();
-            
 
         }
 
@@ -206,6 +205,40 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
                     e.Handled = true; // block the key
                 }
             }
+        }
+
+        private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            frmShowApplicationDetails applicationDetails = new frmShowApplicationDetails(Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            applicationDetails.ShowDialog();
+        }
+
+
+        private void showPersonLiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            frmTestAppointment testAppointment = new frmTestAppointment("Vision Test Appointments ",Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            testAppointment.ShowDialog();
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            frmTestAppointment testAppointment = new frmTestAppointment("Written Test Appointments ", Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            testAppointment.ShowDialog();
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            frmTestAppointment testAppointment = new frmTestAppointment("Street Test Appointments ", Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            testAppointment.ShowDialog();
         }
     }
     
