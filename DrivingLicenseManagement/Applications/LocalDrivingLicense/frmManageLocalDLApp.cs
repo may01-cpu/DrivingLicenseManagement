@@ -34,9 +34,9 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
         }
         private void newDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditLocalDLApp frm = new frmAddEditLocalDLApp();
-            frm.ShowDialog();
-            _Refresh();
+            //frmAddEditLocalDLApp frm = new frmAddEditLocalDLApp();
+            //frm.ShowDialog();
+            //_Refresh();
         }
 
         private void _Refresh()
@@ -223,23 +223,71 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-            frmTestAppointment testAppointment = new frmTestAppointment("Vision Test Appointments ",Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            frmTestAppointment testAppointment = new frmTestAppointment(
+                "Vision Test Appointments",
+                Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
+                1); // Vision TestTypeID
             testAppointment.ShowDialog();
         }
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-            frmTestAppointment testAppointment = new frmTestAppointment("Written Test Appointments ", Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            frmTestAppointment testAppointment = new frmTestAppointment(
+                "Written Test Appointments",
+                Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
+                2); // Written TestTypeID
             testAppointment.ShowDialog();
         }
 
         private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-            frmTestAppointment testAppointment = new frmTestAppointment("Street Test Appointments ", Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value));
+            frmTestAppointment testAppointment = new frmTestAppointment(
+                "Street Test Appointments",
+                Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
+                3); // Street TestTypeID
             testAppointment.ShowDialog();
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            int localAppID = Convert.ToInt32(
+                dataGridView1.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
+
+            clsLocalDLApplication app = clsLocalDLApplication.FindLocalApplication(localAppID);
+            if (app == null) return;
+
+            bool isActive = app.ApplicationStatus == clsApplication.eAppStatus.New;
+
+            // these only make sense on active applications
+            scheduleVisionTestToolStripMenuItem.Enabled = false;
+            scheduleWrittenTestToolStripMenuItem.Enabled = false;
+            scheduleStreetTestToolStripMenuItem.Enabled = false;
+            newDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+            cancelAppllicationToolStripMenuItem.Enabled = isActive;
+
+            if (!isActive) return; // cancelled or completed — stop here
+
+            switch (app.PassedTests)
+            {
+                case 0:
+                    scheduleVisionTestToolStripMenuItem.Enabled = true;
+                    break;
+                case 1:
+                    scheduleWrittenTestToolStripMenuItem.Enabled = true;
+                    break;
+                case 2:
+                    scheduleStreetTestToolStripMenuItem.Enabled = true;
+                    break;
+                case 3:
+                    newDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
+                    break;
+            }
+        }
+
     }
     
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLDBusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,32 @@ namespace DrivingLicenseManagement.Test
 {
     public partial class ctrlRetakeTestInfo : UserControl
     {
+        public int LastFailedAppID { get; private set; } = -1;
+
         public ctrlRetakeTestInfo()
         {
             InitializeComponent();
+        }
+
+        public void LoadRetakeInfo(int LocalAppID, int testTypeID)
+        {
+            clsLocalDLApplication app = clsLocalDLApplication.FindLocalApplication(LocalAppID);
+            clsTestType testType = clsTestType.FindTestType(testTypeID);
+
+            decimal retakeAppFees = app?.ApplicationFees ?? 0;
+            decimal totalFees = retakeAppFees + (testType?.Fee ?? 0);
+
+            LastFailedAppID = app.ApplicationID;
+
+            lblRAppFees.Text = retakeAppFees.ToString("F2");
+            lblRTestAppID.Text = LastFailedAppID.ToString();
+            lblTotalFees.Text = totalFees.ToString("F2");
+        }
+        public void Reset()
+        {
+            lblRAppFees.Text = "[????]";
+            lblRTestAppID.Text = "N/A";
+            lblTotalFees.Text = "[????]";
         }
     }
 }

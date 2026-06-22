@@ -184,7 +184,8 @@
             this.newDrivingLicenseFirstTimeToolStripMenuItem,
             this.showPersonLiceToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(385, 276);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(385, 309);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // editToolStripMenuItem
             // 

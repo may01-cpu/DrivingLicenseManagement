@@ -39,7 +39,9 @@ namespace DVLDBusinessLayer
 
         }
 
-        public clsTestAppointment(int testAppointmentID, int drivingLicenseApplicationID, DateTime appointmentDate, decimal paidFees, bool isLocked, int createdByUserID, int retakeTestApplicationID)
+        public clsTestAppointment(int testAppointmentID, int drivingLicenseApplicationID,
+            DateTime appointmentDate, decimal paidFees,
+            bool isLocked, int createdByUserID, int retakeTestApplicationID)
         {
             TestAppointmentID = testAppointmentID;
             DrivingLicenseApplication = clsLocalDLApplication.FindLocalApplication(drivingLicenseApplicationID);
@@ -51,13 +53,29 @@ namespace DVLDBusinessLayer
             OperationType = eOpType.Update;
         }
 
-        //public static clsTestAppointment FindTestAppointment(int TestAppointmentID)
-        //{
-           
-        //}
-        public static DataTable ListAllTestAppointments(int LocalAppID)
+        public static clsTestAppointment FindTestAppointment(int TestAppointmentID)
         {
-            DataTable dt = clsTestAppointmentData.GetAllTestAppointments(LocalAppID);
+            int DLAppID = -1;
+            DateTime appointmentDate = DateTime.Now;
+            decimal paidFees = 0;
+            bool isLocked = false;
+            int createdByUserID = -1;
+            int retakeTestAppID = -1;
+
+            if (clsTestAppointmentData.GetAppointmentInfoByID(TestAppointmentID, ref DLAppID,
+                ref appointmentDate, ref paidFees, ref isLocked, ref createdByUserID, ref retakeTestAppID))
+            {
+                return new clsTestAppointment(TestAppointmentID, DLAppID, appointmentDate,
+                                              paidFees, isLocked, createdByUserID, retakeTestAppID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static DataTable ListAllTestAppointments(int LocalAppID,int TestTypeID)
+        {
+            DataTable dt = clsTestAppointmentData.GetAllTestAppointments(LocalAppID,TestTypeID);
             return dt;
         }
 

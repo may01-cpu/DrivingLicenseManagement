@@ -269,6 +269,7 @@ namespace DVLDDataAccessLayer
             catch (Exception ex)
             {
                 isFound = false;
+                Console.WriteLine(ex.Message);
             }
             finally
             {

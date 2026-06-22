@@ -114,6 +114,25 @@ namespace DVLDBusinessLayer
 
         }
 
+        public static bool IsThereAnActiveScheduledTest(int LocalAppID, int TestTypeID)
+        {
+            return clsLocalDLApplicationData.IsThereAnActiveScheduledTest(LocalAppID, TestTypeID);
+        }
 
+        public static bool DoesPassTestType(int LocalAppID, int TestTypeID)
+        {
+            return clsLocalDLApplicationData.DoesPassTestType(LocalAppID, TestTypeID);
+        }
+
+        public static bool DoesAttendTestType(int LocalAppID, int TestTypeID)
+        {
+            return clsLocalDLApplicationData.DoesAttendTestType(LocalAppID, TestTypeID);
+        }
+
+        public static byte TotalTrialsPerTest(int LocalAppID, int TestTypeID)
+        {
+            return clsLocalDLApplicationData.TotalTrialsPerTest(LocalAppID, TestTypeID);
+        }
+      
     }
 }

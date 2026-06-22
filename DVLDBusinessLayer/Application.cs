@@ -76,7 +76,7 @@ namespace DVLDBusinessLayer
             decimal ApplicationFees = 0;
             int CreatedBy = -1;
 
-            Convert.ToByte(ApplicationStatus).ToString();
+            //Convert.ToByte(ApplicationStatus).ToString();
 
             if (clsApplicationData.GetApplicationByID(AppID, ref Applicant, ref ApplicationDate, ref ApplicationTypeID
                 , ref ApplicationStatus, ref LastStatusDate, ref ApplicationFees, ref CreatedBy))
@@ -94,11 +94,11 @@ namespace DVLDBusinessLayer
 
         private bool _AddNewApplication()
         {
-            this.ApplicationID = clsApplicationData.AddApplication(ApplicationID, ApplicationDate, (int)ApplicationType.ApplicationTypeID, (byte)ApplicationStatus, LastStatusDate, ApplicationFees, CreatedBy.UserID);
+            this.ApplicationID = clsApplicationData.AddApplication(Applicant.PersonID, ApplicationDate, (int)ApplicationType.ApplicationTypeID, (byte)ApplicationStatus, LastStatusDate, ApplicationFees, CreatedBy.UserID);
             return (this.ApplicationID != -1);
         }
 
-        private bool _UpdatePerson()
+        private bool _UpdateApplication()
         {
             return clsApplicationData.UpdateApplication(this.ApplicationID, this.Applicant.PersonID, this.ApplicationDate,
                 this.ApplicationType.ApplicationTypeID, (byte)this.ApplicationStatus,
@@ -123,7 +123,7 @@ namespace DVLDBusinessLayer
                 case eOpType.updateApplication:
 
 
-                    return _UpdatePerson();
+                    return _UpdateApplication();
 
             }
 

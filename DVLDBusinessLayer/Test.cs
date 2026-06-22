@@ -7,7 +7,7 @@ namespace DVLDBusinessLayer
     {
         public int TestID { get; set; }
         public clsTestAppointment TestAppointment { get; set; }
-        public enum eTestResult { Passed, Failed }
+        public enum eTestResult { Failed = 0, Passed = 1 }
         public eTestResult TestResult { get; set; }
         public string Notes { get; set; }
         public int CreatedBy { get; set; }

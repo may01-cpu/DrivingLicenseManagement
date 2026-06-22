@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ctrlSchedule1 = new DrivingLicenseManagement.Test.ctrlSchedule();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.rdFail = new System.Windows.Forms.RadioButton();
-            this.rdPass = new System.Windows.Forms.RadioButton();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.radFail = new System.Windows.Forms.RadioButton();
+            this.radPass = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ctrlSchedule1 = new DrivingLicenseManagement.Test.ctrlSchedule();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,13 @@
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vision Test";
+            // 
+            // ctrlSchedule1
+            // 
+            this.ctrlSchedule1.Location = new System.Drawing.Point(70, 183);
+            this.ctrlSchedule1.Name = "ctrlSchedule1";
+            this.ctrlSchedule1.Size = new System.Drawing.Size(396, 296);
+            this.ctrlSchedule1.TabIndex = 43;
             // 
             // label3
             // 
@@ -80,6 +87,17 @@
             this.label5.TabIndex = 42;
             this.label5.Text = "        [????]";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 26);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(107, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -92,35 +110,35 @@
             this.label6.TabIndex = 37;
             this.label6.Text = "Scheduled Test";
             // 
-            // textBox1
+            // txtNotes
             // 
-            this.textBox1.Location = new System.Drawing.Point(160, 616);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(429, 110);
-            this.textBox1.TabIndex = 56;
+            this.txtNotes.Location = new System.Drawing.Point(160, 616);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(429, 110);
+            this.txtNotes.TabIndex = 56;
             // 
-            // rdFail
+            // radFail
             // 
-            this.rdFail.AutoSize = true;
-            this.rdFail.Location = new System.Drawing.Point(260, 554);
-            this.rdFail.Name = "rdFail";
-            this.rdFail.Size = new System.Drawing.Size(59, 24);
-            this.rdFail.TabIndex = 55;
-            this.rdFail.TabStop = true;
-            this.rdFail.Text = "Fail";
-            this.rdFail.UseVisualStyleBackColor = true;
+            this.radFail.AutoSize = true;
+            this.radFail.Location = new System.Drawing.Point(260, 554);
+            this.radFail.Name = "radFail";
+            this.radFail.Size = new System.Drawing.Size(59, 24);
+            this.radFail.TabIndex = 55;
+            this.radFail.TabStop = true;
+            this.radFail.Text = "Fail";
+            this.radFail.UseVisualStyleBackColor = true;
             // 
-            // rdPass
+            // radPass
             // 
-            this.rdPass.AutoSize = true;
-            this.rdPass.Location = new System.Drawing.Point(160, 556);
-            this.rdPass.Name = "rdPass";
-            this.rdPass.Size = new System.Drawing.Size(69, 24);
-            this.rdPass.TabIndex = 54;
-            this.rdPass.TabStop = true;
-            this.rdPass.Text = "Pass";
-            this.rdPass.UseVisualStyleBackColor = true;
+            this.radPass.AutoSize = true;
+            this.radPass.Location = new System.Drawing.Point(160, 556);
+            this.radPass.Name = "radPass";
+            this.radPass.Size = new System.Drawing.Size(69, 24);
+            this.radPass.TabIndex = 54;
+            this.radPass.TabStop = true;
+            this.radPass.Text = "Pass";
+            this.radPass.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -162,24 +180,7 @@
             this.btnSave.TabIndex = 58;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(225, 26);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(107, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 38;
-            this.pictureBox1.TabStop = false;
-            // 
-            // ctrlSchedule1
-            // 
-            this.ctrlSchedule1.Location = new System.Drawing.Point(70, 183);
-            this.ctrlSchedule1.Name = "ctrlSchedule1";
-            this.ctrlSchedule1.Size = new System.Drawing.Size(396, 296);
-            this.ctrlSchedule1.TabIndex = 43;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmTakeTest
             // 
@@ -188,9 +189,9 @@
             this.ClientSize = new System.Drawing.Size(611, 786);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.rdFail);
-            this.Controls.Add(this.rdPass);
+            this.Controls.Add(this.txtNotes);
+            this.Controls.Add(this.radFail);
+            this.Controls.Add(this.radPass);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
@@ -211,9 +212,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton rdFail;
-        private System.Windows.Forms.RadioButton rdPass;
+        private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.RadioButton radFail;
+        private System.Windows.Forms.RadioButton radPass;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnClose;

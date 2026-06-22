@@ -12,50 +12,85 @@ namespace DVLDDataAccessLayer
 {
     public class clsTestAppointmentData
     {
-        public static DataTable GetAllTestAppointments(int LocalAppID)
+        public static bool GetAppointmentInfoByID(
+          int TestAppointmentID, ref int DLAppID, ref DateTime AppointmentDate,
+          ref decimal paidFees, ref bool isLocked, ref int CreatedByUserID,
+          ref int retakeTestAppID)
         {
-            DataTable dt = new DataTable();
-
+            bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT  TestAppointmentID,AppointmentDate, PaidFees,IsLocked
-                            FROM   TestAppointments
-                            WHERE LocalDrivingLicenseApplicationID=@LocalAppID
-                            ORDER BY AppointmentDate";
-
+            string query = "SELECT * FROM TestAppointments WHERE TestAppointmentID = @TestAppointmentID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@LocalAppID", LocalAppID);
-
+            command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                if (reader.Read())
                 {
-                    dt.Load(reader);
+                    isFound = true;
+                    DLAppID = (int)reader["LocalDrivingLicenseApplicationID"];
+                    AppointmentDate = (DateTime)reader["AppointmentDate"];
+                    paidFees = (decimal)reader["PaidFees"];
+                    isLocked = (bool)reader["IsLocked"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    retakeTestAppID = reader["RetakeTestApplicationID"] == DBNull.Value
+                                      ? -1
+                                      : (int)reader["RetakeTestApplicationID"];
                 }
                 reader.Close();
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving test appointments: " + ex.Message);
+                Console.WriteLine(ex.Message);
+                isFound = false;
             }
             finally
             {
                 connection.Close();
             }
-            return dt;
+            return isFound;
         }
 
-        public static int AddNewTestAppointment(int TestTypeID, int LocalDLAppID, DateTime AppointDate, decimal PaidFees, int CreatedBy, bool isLocked, int retakeTestID)
+
+
+        public static DataTable GetAllTestAppointments(int LocalAppID, int TestTypeID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT TestAppointmentID, AppointmentDate, PaidFees, IsLocked
+                     FROM TestAppointments
+                     WHERE LocalDrivingLicenseApplicationID = @LocalAppID
+                     AND TestTypeID = @TestTypeID 
+                     ORDER BY AppointmentDate";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalAppID", LocalAppID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows) dt.Load(reader);
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving test appointments: " + ex.Message);
+            }
+            finally { connection.Close(); }
+            return dt;
+        }
+        
+        public static int AddNewTestAppointment(int TestTypeID, int LocalDLAppID, DateTime AppointDate,
+     decimal PaidFees, int CreatedBy, bool isLocked, int retakeTestID)
         {
             int newTestAppointmentID = -1;
-
             string query = @"
-                INSERT INTO TestAppointments
-                (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID)
-                VALUES 
-                (@TestTypeID, @LocalDLAppID, @AppointDate, @PaidFees, @CreatedBy, @IsLocked, @RetakeTestID);
-                SELECT SCOPE_IDENTITY();";
+        INSERT INTO TestAppointments
+        (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID)
+        VALUES 
+        (@TestTypeID, @LocalDLAppID, @AppointDate, @PaidFees, @CreatedBy, @IsLocked, @RetakeTestID);
+        SELECT SCOPE_IDENTITY();";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
@@ -64,28 +99,19 @@ namespace DVLDDataAccessLayer
             command.Parameters.AddWithValue("@PaidFees", PaidFees);
             command.Parameters.AddWithValue("@CreatedBy", CreatedBy);
             command.Parameters.AddWithValue("@IsLocked", isLocked);
-            command.Parameters.AddWithValue("@RetakeTestID", retakeTestID);
-
+            command.Parameters.AddWithValue("@RetakeTestID",
+                retakeTestID == -1 ? (object)DBNull.Value : retakeTestID);
             try
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
-                {
                     newTestAppointmentID = insertedID;
-                }
             }
-            catch
-            {
-                newTestAppointmentID = -1;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            catch { newTestAppointmentID = -1; }
+            finally { connection.Close(); }
             return newTestAppointmentID;
         }
-
 
         public static bool UpdateTestAppointment(int TestAppointID, DateTime AppointmentDate)
         {
