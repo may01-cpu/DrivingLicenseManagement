@@ -61,12 +61,17 @@ namespace DVLDBusinessLayer
             bool isLocked = false;
             int createdByUserID = -1;
             int retakeTestAppID = -1;
+            int testTypeID = -1;
 
             if (clsTestAppointmentData.GetAppointmentInfoByID(TestAppointmentID, ref DLAppID,
-                ref appointmentDate, ref paidFees, ref isLocked, ref createdByUserID, ref retakeTestAppID))
+                ref appointmentDate, ref paidFees, ref isLocked, ref createdByUserID, ref retakeTestAppID, ref testTypeID))
             {
-                return new clsTestAppointment(TestAppointmentID, DLAppID, appointmentDate,
-                                              paidFees, isLocked, createdByUserID, retakeTestAppID);
+                clsTestAppointment appointment = new clsTestAppointment(
+              TestAppointmentID, DLAppID, appointmentDate,
+              paidFees, isLocked, createdByUserID, retakeTestAppID);
+
+                appointment.TestTypeID = testTypeID;
+                return appointment;
             }
             else
             {

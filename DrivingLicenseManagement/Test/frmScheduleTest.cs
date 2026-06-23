@@ -43,11 +43,13 @@ namespace DrivingLicenseManagement.Test
             bool isRetake = clsLocalDLApplication.DoesAttendTestType(LocalDLApp, testTypeID);
             if (isRetake)
             {
+                lblTitle.Text = "Schedule Retake Test";
                 ctrlRetakeTestInfo1.Visible = true; // ← show it
                 ctrlRetakeTestInfo1.LoadRetakeInfo(LocalDLApp, testTypeID);
             }
             else
             {
+                lblTitle.Text =" Schedule Test";
                 ctrlRetakeTestInfo1.Visible = false; // ← hide it
                 ctrlRetakeTestInfo1.Reset();
             }
@@ -61,7 +63,9 @@ namespace DrivingLicenseManagement.Test
                 appointment.DrivingLicenseApplication = ctrlSchedule1.LDLApplication;
                 appointment.TestTypeID = ctrlSchedule1.TestTypeID;
                 appointment.AppointmentDate = ctrlSchedule1.AppointmentDate;
-                appointment.PaidFees = ctrlSchedule1.TestFees;
+                appointment.PaidFees = ctrlRetakeTestInfo1.Visible
+                 ? ctrlRetakeTestInfo1.TotalFees  // ← retake: app fees + test fees
+                    : ctrlSchedule1.TestFees;        // ← first time: just test fees
                 appointment.IsLocked = false;
                 appointment.CreatedByUserID = clsUser.LoggedInUser.UserID;
                 appointment.RetakeTestApplicationID = ctrlRetakeTestInfo1.Enabled

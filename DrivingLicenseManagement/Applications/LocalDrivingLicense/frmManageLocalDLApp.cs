@@ -226,8 +226,9 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
             frmTestAppointment testAppointment = new frmTestAppointment(
                 "Vision Test Appointments",
                 Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
-                1); // Vision TestTypeID
+                1); 
             testAppointment.ShowDialog();
+            _Refresh();
         }
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,6 +239,7 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
                 Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
                 2); // Written TestTypeID
             testAppointment.ShowDialog();
+                _Refresh();
         }
 
         private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,6 +250,7 @@ namespace DrivingLicenseManagement.Applications.LocalDrivingLicense
                 Convert.ToInt32(row.Cells["LocalDrivingLicenseApplicationID"].Value),
                 3); // Street TestTypeID
             testAppointment.ShowDialog();
+            _Refresh();
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)

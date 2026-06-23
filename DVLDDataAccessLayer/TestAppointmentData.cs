@@ -15,7 +15,7 @@ namespace DVLDDataAccessLayer
         public static bool GetAppointmentInfoByID(
           int TestAppointmentID, ref int DLAppID, ref DateTime AppointmentDate,
           ref decimal paidFees, ref bool isLocked, ref int CreatedByUserID,
-          ref int retakeTestAppID)
+          ref int retakeTestAppID, ref int TestTypeID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -29,6 +29,7 @@ namespace DVLDDataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
+                    TestTypeID = (int)reader["TestTypeID"];
                     DLAppID = (int)reader["LocalDrivingLicenseApplicationID"];
                     AppointmentDate = (DateTime)reader["AppointmentDate"];
                     paidFees = (decimal)reader["PaidFees"];

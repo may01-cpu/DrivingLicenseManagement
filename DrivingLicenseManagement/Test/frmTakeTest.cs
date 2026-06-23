@@ -15,14 +15,17 @@ namespace DrivingLicenseManagement.Test
     {
         private int _TestAppointmentID = -1;
         private clsTestAppointment _appointment;
-
-        public frmTakeTest(int testAppointmentID)
+       
+        public frmTakeTest(int testAppointmentID, int testTypeID)
         {
             InitializeComponent();
             _TestAppointmentID = testAppointmentID;
             _appointment = clsTestAppointment.FindTestAppointment(testAppointmentID);
-        }
+            
+            if (_appointment == null) return;
 
+            ctrlSchedule1.LoadTakeTestInfo(_appointment, testTypeID); // ← just this
+        }
         private void frmTakeTest_Load(object sender, EventArgs e)
         {
             if (_appointment == null)
@@ -32,10 +35,9 @@ namespace DrivingLicenseManagement.Test
                 return;
             }
 
-            // block if already locked (test already taken)
             if (_appointment.IsLocked)
             {
-                MessageBox.Show("This test has already been taken and cannot be modified.",
+                MessageBox.Show("This test has already been taken.",
                                 "Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
                 return;
@@ -45,33 +47,55 @@ namespace DrivingLicenseManagement.Test
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (_appointment == null) return;
-        
-            bool passed = radPass.Checked; 
+
+            if (!radPass.Checked && !radFail.Checked)
+            {
+                MessageBox.Show("Please select Pass or Fail.", "Result Required",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             clsTest test = new clsTest();
             test.TestAppointment.TestAppointmentID = _TestAppointmentID;
-            test.TestResult = passed ? clsTest.eTestResult.Passed : clsTest.eTestResult.Failed;
-            test.Notes = txtNotes.Text.Trim(); 
+            test.TestResult = radPass.Checked ? clsTest.eTestResult.Passed : clsTest.eTestResult.Failed;
+            test.Notes = txtNotes.Text.Trim();
             test.CreatedBy = clsUser.LoggedInUser.UserID;
 
-            if (test.Save())
+            if (!test.Save())
             {
-                bool locked = clsTestAppointment.MarkTestAppointmentAsLocked(_TestAppointmentID);
-                if (!locked)
-                    MessageBox.Show("Warning: Failed to lock appointment!");
+                MessageBox.Show("Failed to save test result.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                MessageBox.Show(passed ? "Passed!" : "Failed.");
-                this.Close();
-            }
-            else
+            bool appCompleted = false;
+            if (radPass.Checked && _appointment.TestTypeID == 3)
             {
-                MessageBox.Show("Failed to save test result.");
+                clsApplication app = clsApplication.FindApplication(
+                    _appointment.DrivingLicenseApplication.ApplicationID);
+                if (app != null)
+                {
+                    app.ApplicationStatus = clsApplication.eAppStatus.Completed;
+                    appCompleted = app.Save();
+                }
             }
+
+            clsTestAppointment.MarkTestAppointmentAsLocked(_TestAppointmentID);
+
+            // One single final message
+            string result = radPass.Checked ? "✔ Passed" : "✘ Failed";
+            string extra = appCompleted ? "\nApplication marked as Completed." : "";
+            MessageBox.Show(result + extra, "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.Close();
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        
+        
     }
+
 }

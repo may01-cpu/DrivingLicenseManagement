@@ -98,7 +98,7 @@ namespace DrivingLicenseManagement.Test
             int appointmentID = Convert.ToInt32(
               dataGridView1.SelectedRows[0].Cells["TestAppointmentID"].Value);
 
-            frmTakeTest takeTest = new frmTakeTest(appointmentID);
+            frmTakeTest takeTest = new frmTakeTest(appointmentID,_TestTypeID);
             takeTest.ShowDialog();
             _RefreshAppointmentsList();
 

@@ -34,6 +34,7 @@ namespace DVLDBusinessLayer
             LastStatusDate = DateTime.Now;
             ApplicationFees = 0;
             CreatedBy = clsUser.LoggedInUser;
+            OperationType = eOpType.AddNewApplication;
 
         }
 
@@ -48,6 +49,9 @@ namespace DVLDBusinessLayer
             LastStatusDate = lastStatusDate;
             ApplicationFees = appFees;
             CreatedBy = createdBy;
+            OperationType = eOpType.updateApplication;
+
+
         }
         //public clsApplication(int AppID) { }
 

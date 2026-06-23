@@ -22,29 +22,57 @@ namespace DrivingLicenseManagement.Test
         {
             dateTimePicker1.Value = date;
         }
-        public void LoadScheduleInfo(int LocalAppID, int testTypeID)
+        public void LoadScheduleInfo(int localAppID, int testTypeID)
         {
-            _testTypeID = testTypeID;
-            LDLApplication = clsLocalDLApplication.FindLocalApplication(LocalAppID);
-            if (LDLApplication != null)
-                _LoadInfos();
-            else
-                _ResetInfos();
+            LoadInfo(
+                clsLocalDLApplication.FindLocalApplication(localAppID),
+                testTypeID);
         }
 
-        private void _LoadInfos()
+        public void LoadTakeTestInfo(clsTestAppointment appointment, int testTypeID)
         {
-            lblDLAppID.Text = "      " + LDLApplication.LocalApplicationID.ToString();
+            LoadInfo(
+                appointment?.DrivingLicenseApplication,
+                testTypeID,
+                appointment?.AppointmentDate);
+        }
+
+        private void LoadInfo(clsLocalDLApplication application,
+                      int testTypeID,
+                      DateTime? appointmentDate = null)
+        {
+            _testTypeID = testTypeID;
+            _testType = clsTestType.FindTestType(testTypeID);
+            LDLApplication = application;
+
+            if (LDLApplication == null)
+            {
+                _ResetInfos();
+                return;
+            }
+
+            _LoadInfos(appointmentDate);
+        }
+
+        private void _LoadInfos(DateTime? date = null)
+        {
+            byte trials = clsLocalDLApplication.TotalTrialsPerTest(
+                LDLApplication.LocalApplicationID,
+                _testTypeID);
+
+            lblDLAppID.Text = "      "+ LDLApplication.LocalApplicationID.ToString();
             lblApplicantName.Text = "      " + LDLApplication.Applicant.FullName;
             lblClassName.Text = "      " + LDLApplication.LicenseClass.ClassName;
-            lblTrial.Text = "      0";
-            dateTimePicker1.Value = DateTime.Now;
+            lblTrial.Text = "      " + trials.ToString();
 
-            _testType = clsTestType.FindTestType(_testTypeID);
+            dateTimePicker1.Value = date ?? DateTime.Now;
+            dateTimePicker1.Enabled = !date.HasValue;
+
             lblFees.Text = _testType != null
                 ? "      " + _testType.Fee.ToString("F2")
                 : "      N/A";
         }
+
 
         private void _ResetInfos()
         {

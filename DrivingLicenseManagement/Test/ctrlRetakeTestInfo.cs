@@ -14,7 +14,7 @@ namespace DrivingLicenseManagement.Test
     public partial class ctrlRetakeTestInfo : UserControl
     {
         public int LastFailedAppID { get; private set; } = -1;
-
+        public decimal TotalFees { get; private set; }
         public ctrlRetakeTestInfo()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace DrivingLicenseManagement.Test
             decimal totalFees = retakeAppFees + (testType?.Fee ?? 0);
 
             LastFailedAppID = app.ApplicationID;
-
+            TotalFees = (int)totalFees;
             lblRAppFees.Text = retakeAppFees.ToString("F2");
             lblRTestAppID.Text = LastFailedAppID.ToString();
             lblTotalFees.Text = totalFees.ToString("F2");

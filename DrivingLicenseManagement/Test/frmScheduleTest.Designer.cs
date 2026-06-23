@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.ctrlSchedule1 = new DrivingLicenseManagement.Test.ctrlSchedule();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ctrlRetakeTestInfo1 = new DrivingLicenseManagement.Test.ctrlRetakeTestInfo();
-            this.ctrlSchedule1 = new DrivingLicenseManagement.Test.ctrlSchedule();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +43,7 @@
             // 
             this.groupBox1.Controls.Add(this.ctrlSchedule1);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.lblTitle);
             this.groupBox1.Location = new System.Drawing.Point(41, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(584, 492);
@@ -51,17 +51,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vision Test";
             // 
-            // label6
+            // ctrlSchedule1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Rockwell Extra Bold", 18F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.DarkRed;
-            this.label6.Location = new System.Drawing.Point(120, 117);
-            this.label6.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(317, 42);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Schedule Test";
+            this.ctrlSchedule1.Location = new System.Drawing.Point(38, 169);
+            this.ctrlSchedule1.Name = "ctrlSchedule1";
+            this.ctrlSchedule1.Size = new System.Drawing.Size(470, 296);
+            this.ctrlSchedule1.TabIndex = 39;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 26);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(107, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Rockwell Extra Bold", 18F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblTitle.Location = new System.Drawing.Point(120, 117);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(317, 42);
+            this.lblTitle.TabIndex = 37;
+            this.lblTitle.Text = "Schedule Test";
             // 
             // btnClose
             // 
@@ -86,30 +104,12 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(225, 26);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 50, 0, 50);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(107, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 38;
-            this.pictureBox1.TabStop = false;
-            // 
             // ctrlRetakeTestInfo1
             // 
             this.ctrlRetakeTestInfo1.Location = new System.Drawing.Point(53, 521);
             this.ctrlRetakeTestInfo1.Name = "ctrlRetakeTestInfo1";
             this.ctrlRetakeTestInfo1.Size = new System.Drawing.Size(560, 188);
             this.ctrlRetakeTestInfo1.TabIndex = 49;
-            // 
-            // ctrlSchedule1
-            // 
-            this.ctrlSchedule1.Location = new System.Drawing.Point(38, 169);
-            this.ctrlSchedule1.Name = "ctrlSchedule1";
-            this.ctrlSchedule1.Size = new System.Drawing.Size(470, 296);
-            this.ctrlSchedule1.TabIndex = 39;
             // 
             // frmScheduleTest
             // 
@@ -133,7 +133,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private ctrlRetakeTestInfo ctrlRetakeTestInfo1;
